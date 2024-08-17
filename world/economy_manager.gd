@@ -1,5 +1,7 @@
 extends Node
 
+signal on_gold_changed(new_gold : int)
+
 var _current_gold: int = 10
 
 @onready var _building_placement_manager:BuildingPlacementManager = %BuildingPlacementManager
@@ -7,6 +9,7 @@ var _current_gold: int = 10
 func _ready() -> void:
 	_building_placement_manager.building_purchased.connect(_on_building_purchased)
 	_building_placement_manager.building_sold.connect(_on_building_sold)
+	_update_gold_display()
 
 func _on_building_purchased(building_data: BuildingResource) -> void:
 	_current_gold -= building_data.gold_cost
@@ -17,8 +20,8 @@ func _on_building_sold(building: Building) -> void:
 	_update_gold_display()
 
 func _update_gold_display() -> void:
-	pass
+	on_gold_changed.emit(_current_gold)
 	#%GoldLabel.text = "Gold: " + str(_current_gold)
 
 func can_purchase_building(building_data: BuildingResource) -> bool:
-	return _current_gold >= building_data.gold_cost
+	return building_data && _current_gold >= building_data.gold_cost

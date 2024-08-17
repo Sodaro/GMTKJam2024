@@ -1,0 +1,208 @@
+[gd_scene load_steps=13 format=3 uid="uid://be3f18s7u8jc"]
+
+[ext_resource type="Texture2D" uid="uid://bg37qivtheagw" path="res://art/ui_border/border/panel-border-000.png" id="1_i1o0d"]
+[ext_resource type="Script" path="res://world/tower.gd" id="2_nunes"]
+[ext_resource type="Resource" uid="uid://ql4eepku077d" path="res://building/fire_tower/fire_tower.tres" id="3_e8ux6"]
+[ext_resource type="Resource" uid="uid://doqbxp82av5h" path="res://building/arrow_tower/arrow_tower.tres" id="4_herdj"]
+[ext_resource type="Script" path="res://world/game_information.gd" id="5_2ynfw"]
+[ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="6_27d4s"]
+[ext_resource type="LabelSettings" uid="uid://m7fmqhjh2d80" path="res://main_menu/options_label.tres" id="7_jylyr"]
+[ext_resource type="Texture2D" uid="uid://bd4l3wvk4kbit" path="res://art/next_button.png" id="8_7tj1y"]
+[ext_resource type="Texture2D" uid="uid://dcemxwwsv4bqj" path="res://art/frame.png" id="9_stuqm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw3gx"]
+atlas = ExtResource("6_27d4s")
+region = Rect2(48, 48, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k62bq"]
+atlas = ExtResource("6_27d4s")
+region = Rect2(64, 40, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2iaor"]
+atlas = ExtResource("6_27d4s")
+region = Rect2(48, 56, 8, 8)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CastleCoreHealthLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0
+text = "10
+"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+custom_minimum_size = Vector2(64, 37)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.133333, 0.137255, 0.137255, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TowerActionBar" type="HFlowContainer" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/MarginContainer"]
+custom_minimum_size = Vector2(52, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+
+[node name="ButtonBorder" type="TextureRect" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/MarginContainer/TowerActionBar"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_i1o0d")
+
+[node name="FireTowerButton" type="TextureButton" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/MarginContainer/TowerActionBar/ButtonBorder"]
+z_index = 100
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("2_nunes")
+tower_resource = ExtResource("3_e8ux6")
+
+[node name="ButtonBorder2" type="TextureRect" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/MarginContainer/TowerActionBar"]
+layout_mode = 2
+texture = ExtResource("1_i1o0d")
+
+[node name="ArrowTowerButton" type="TextureButton" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/MarginContainer/TowerActionBar/ButtonBorder2"]
+z_index = 100
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("2_nunes")
+tower_resource = ExtResource("4_herdj")
+
+[node name="GameInformation" type="VFlowContainer" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 2
+script = ExtResource("5_2ynfw")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="HeartIcon" type="TextureRect" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_tw3gx")
+stretch_mode = 4
+
+[node name="LifeLabel" type="Label" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/HFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "20
+"
+label_settings = ExtResource("7_jylyr")
+
+[node name="HFlowContainer2" type="HFlowContainer" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="CoinIcon" type="TextureRect" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/HFlowContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_k62bq")
+stretch_mode = 4
+
+[node name="GoldLabel" type="Label" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/HFlowContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "20
+"
+label_settings = ExtResource("7_jylyr")
+
+[node name="HFlowContainer3" type="HFlowContainer" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="LevelIcon" type="TextureRect" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/HFlowContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_2iaor")
+stretch_mode = 4
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/HFlowContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "20
+"
+label_settings = ExtResource("7_jylyr")
+
+[node name="NextWaveButton" type="TextureButton" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("8_7tj1y")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 5.0
+grow_horizontal = 2
+texture = ExtResource("9_stuqm")

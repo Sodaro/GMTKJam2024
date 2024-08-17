@@ -1,6 +1,7 @@
 extends Node
 
 signal on_enemy_castle_reached(enemy : BaseEnemy)
+signal on_level_changed(new_level : int)
 
 var _current_wave_number: int = 0
 var _enemies_to_spawn: int = 0
@@ -32,6 +33,7 @@ func next_wave() -> void:
 	_spawn_timer = 0
 	_enemies_to_spawn += _get_number_of_base_enemies(_current_wave_number)
 	_current_spawn_interval = _get_spawn_interval(_enemies_to_spawn, _current_wave_number)
+	on_level_changed.emit(_current_wave_number)
 	
 func _get_spawn_interval(enemies_count: int, wave_number: int) -> float:
 	var wave_spawn_time: float = base_spawn_time + (wave_number * spawn_time_scaling_factor)
@@ -69,3 +71,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_try_spawn_enemies(delta)
+
+
+func _on_next_wave_button_button_down() -> void:
+	next_wave()
