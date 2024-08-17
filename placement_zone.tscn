@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhowmgv1gdyyd"]
+
+[ext_resource type="Script" path="res://placement_zone.gd" id="1_24607"]
+
+[node name="PlacementZone" type="Node2D"]
+position = Vector2(288, 120)
+script = ExtResource("1_24607")
+width_tiles = 4
+height_tiles = 15

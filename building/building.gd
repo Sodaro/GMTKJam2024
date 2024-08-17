@@ -1,4 +1,5 @@
 class_name Building extends Node2D
+
 var gold_cost: int = 0
 var refund_value: int = 0
 

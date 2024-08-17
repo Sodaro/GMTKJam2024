@@ -14,7 +14,11 @@ enum BuildMode {BUILD, SELL, SELECT}
 
 var mode: BuildMode = BuildMode.BUILD
 
+@export var allowed_placement_zones: Array[PlacementZone]
 @export var building_data: BuildingResource
+
+func _ready() -> void:
+	$BuildingGrid.generate_grid(allowed_placement_zones)
 
 func _process(_delta: float) -> void:
 	previous_node = hovered_node

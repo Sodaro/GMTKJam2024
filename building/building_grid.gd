@@ -13,18 +13,28 @@ var node_size: int = 16
 
 var grid_nodes: Array[GridNode]
 
-func _ready() -> void:
-	_generate_grid()
-
-func _generate_grid() -> void:
+func generate_grid(allowed_placement_zones: Array[PlacementZone]) -> void:
 	grid_nodes.resize(rows * cols)
 	for i: int in rows * cols:
 		var x: int = i % cols
 		var y: int = int(i / cols)
 		var instance: GridNode = grid_node_scene.instantiate()
+		var pos := Vector2(x * node_size, y * node_size)
 		instance.position = Vector2(x * node_size, y * node_size)
 		add_child(instance)
 		grid_nodes[i] = instance
+		var is_locked: bool = true
+		for zone in allowed_placement_zones:
+			var rect: Rect2 = zone.get_rect()
+			if rect.has_point(pos):
+				is_locked = false
+				break
+		if is_locked:
+			instance.lock()
+			instance.clear_highlight()
+
+
+
 
 func get_grid_node_at_mouse() -> GridNode:
 	var mouse_pos: Vector2 = get_global_mouse_position()
