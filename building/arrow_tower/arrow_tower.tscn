@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://gr8l1ns1xg0f"]
+
+[ext_resource type="Texture2D" uid="uid://c6iicme8qqytd" path="res://art/tower_atlas.tres" id="1_hht2p"]
+[ext_resource type="PackedScene" uid="uid://8ug7o6u0bmuv" path="res://building/components/tower_enemy_detector_component.tscn" id="1_vxvdb"]
+[ext_resource type="Script" path="res://building/arrow_tower/arrow_tower.gd" id="1_w82hm"]
+[ext_resource type="PackedScene" uid="uid://dwfeurutxf2e" path="res://building/components/tower_health_component.tscn" id="2_7psr7"]
+[ext_resource type="Texture2D" uid="uid://ml1dtfxabreq" path="res://icon.svg" id="5_nbanc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf47x"]
+atlas = ExtResource("1_hht2p")
+region = Rect2(0, 16, 16, 16)
+
+[node name="ArrowTower" type="Node2D"]
+script = ExtResource("1_w82hm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_sf47x")
+
+[node name="TowerEnemyDetectorComponent" parent="." instance=ExtResource("1_vxvdb")]
+detection_range = 5
+
+[node name="TowerHealthComponent" parent="." instance=ExtResource("2_7psr7")]
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.1, 0.02)
+texture = ExtResource("5_nbanc")
+
+[connection signal="enemy_detected" from="TowerEnemyDetectorComponent" to="." method="_on_tower_enemy_detector_component_enemy_detected"]
+[connection signal="enemy_lost" from="TowerEnemyDetectorComponent" to="." method="_on_tower_enemy_detector_component_enemy_lost"]

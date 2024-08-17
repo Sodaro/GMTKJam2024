@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=3 format=3 uid="uid://doqbxp82av5h"]
+
+[ext_resource type="Script" path="res://building/building_resource/building_resource.gd" id="1_bn4rm"]
+[ext_resource type="PackedScene" uid="uid://gr8l1ns1xg0f" path="res://building/arrow_tower/arrow_tower.tscn" id="1_c33va"]
+
+[resource]
+script = ExtResource("1_bn4rm")
+display_name = &"Arrow Tower"
+gold_cost = 2
+building_scene = ExtResource("1_c33va")
