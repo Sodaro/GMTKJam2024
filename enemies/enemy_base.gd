@@ -3,7 +3,7 @@ extends PathFollow2D
 class_name BaseEnemy
 
 var health: float = 10.0
-signal reached_castle(damage: float)
+signal reached_castle(enemy: BaseEnemy)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -12,7 +12,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	progress += delta * 50
 	if progress_ratio >= 1.0:
-		reached_castle.emit(1.0)
+		reached_castle.emit(self)
 		queue_free()
 
 func take_damage(amount: float) -> void:

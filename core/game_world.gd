@@ -11,4 +11,3 @@ func _on_castle_core_health_changed(old_amount: float, new_amount: float) -> voi
 
 func _on_blob_enemy_reached_castle(damage: float) -> void:
 	%CastleCore.take_damage(damage)
-	pass # Replace with function body.

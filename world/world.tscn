@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjv3obretvf5x"]
 
 [ext_resource type="Script" path="res://core/game_world.gd" id="1_qy8cf"]
-[ext_resource type="PackedScene" uid="uid://bli8m2ugwuown" path="res://enemies/blob_enemy.tscn" id="2_p725l"]
 [ext_resource type="PackedScene" uid="uid://cnjye1fb541he" path="res://castle/castle_core.tscn" id="3_g7xh2"]
+[ext_resource type="Script" path="res://world/wave_manager.gd" id="4_adcc8"]
 
 [sub_resource type="Curve2D" id="Curve2D_x7any"]
 _data = {
@@ -16,10 +16,6 @@ script = ExtResource("1_qy8cf")
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(201, -20)
 curve = SubResource("Curve2D_x7any")
-
-[node name="Blob Enemy" parent="Path2D" instance=ExtResource("2_p725l")]
-position = Vector2(55, 20)
-rotation = 1.5708
 
 [node name="CastleCore" parent="." instance=ExtResource("3_g7xh2")]
 unique_name_in_owner = true
@@ -41,5 +37,9 @@ offset_bottom = 23.0
 text = "10
 "
 
-[connection signal="reached_castle" from="Path2D/Blob Enemy" to="." method="_on_blob_enemy_reached_castle"]
+[node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("enemy_path")]
+unique_name_in_owner = true
+script = ExtResource("4_adcc8")
+enemy_path = NodePath("../Path2D")
+
 [connection signal="health_changed" from="CastleCore" to="." method="_on_castle_core_health_changed"]
