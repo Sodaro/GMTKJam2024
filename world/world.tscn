@@ -21,10 +21,9 @@ curve = SubResource("Curve2D_x7any")
 position = Vector2(55, 20)
 rotation = 1.5708
 
-[node name="CastleCore" parent="." node_paths=PackedStringArray("path_node") instance=ExtResource("3_g7xh2")]
+[node name="CastleCore" parent="." instance=ExtResource("3_g7xh2")]
 unique_name_in_owner = true
 position = Vector2(190, 247)
-path_node = NodePath("../Path2D")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
