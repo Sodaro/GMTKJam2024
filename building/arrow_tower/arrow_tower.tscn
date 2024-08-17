@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://8ug7o6u0bmuv" path="res://building/components/tower_enemy_detector_component.tscn" id="1_vxvdb"]
 [ext_resource type="Script" path="res://building/arrow_tower/arrow_tower.gd" id="1_w82hm"]
 [ext_resource type="PackedScene" uid="uid://dwfeurutxf2e" path="res://building/components/tower_health_component.tscn" id="2_7psr7"]
-[ext_resource type="Texture2D" uid="uid://ml1dtfxabreq" path="res://icon.svg" id="5_nbanc"]
+[ext_resource type="Texture2D" uid="uid://co1w67ragobda" path="res://art/arrow.png" id="5_nlpxu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sf47x"]
 atlas = ExtResource("1_hht2p")
@@ -23,8 +23,7 @@ detection_range = 5
 
 [node name="Arrow" type="Sprite2D" parent="."]
 visible = false
-scale = Vector2(0.1, 0.02)
-texture = ExtResource("5_nbanc")
+texture = ExtResource("5_nlpxu")
 
 [connection signal="enemy_detected" from="TowerEnemyDetectorComponent" to="." method="_on_tower_enemy_detector_component_enemy_detected"]
 [connection signal="enemy_lost" from="TowerEnemyDetectorComponent" to="." method="_on_tower_enemy_detector_component_enemy_lost"]

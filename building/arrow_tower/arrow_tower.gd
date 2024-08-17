@@ -13,7 +13,6 @@ func _process(delta: float) -> void:
 
 	arrow_move_timer += delta
 	var pos = lerp(global_position, enemy_position, arrow_move_timer / arrow_move_duration)
-	pos += $Arrow.transform.y * sin(TAU * (1 / arrow_move_duration) * arrow_move_timer) * 64
 	$Arrow.global_position = pos
 	$Arrow.look_at(enemy_position)
 	if arrow_move_timer >= arrow_move_duration:
