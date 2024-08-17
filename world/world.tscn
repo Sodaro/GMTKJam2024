@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjv3obretvf5x"]
+[gd_scene load_steps=11 format=3 uid="uid://cjv3obretvf5x"]
 
 [ext_resource type="Script" path="res://core/game_world.gd" id="1_qy8cf"]
+[ext_resource type="Texture2D" uid="uid://bg37qivtheagw" path="res://art/ui_border/border/panel-border-000.png" id="3_7ddcm"]
 [ext_resource type="PackedScene" uid="uid://cnjye1fb541he" path="res://castle/castle_core.tscn" id="3_g7xh2"]
 [ext_resource type="Script" path="res://world/wave_manager.gd" id="4_adcc8"]
 [ext_resource type="PackedScene" uid="uid://bvxaabynny85q" path="res://building/building_placement_manager.tscn" id="4_wjtmy"]
+[ext_resource type="Script" path="res://world/tower.gd" id="4_y1vvv"]
 [ext_resource type="Resource" uid="uid://ql4eepku077d" path="res://building/fire_tower/fire_tower.tres" id="5_5j8n2"]
 [ext_resource type="Script" path="res://world/economy_manager.gd" id="5_41gpm"]
+[ext_resource type="Resource" uid="uid://doqbxp82av5h" path="res://building/arrow_tower/arrow_tower.tres" id="6_xs0hh"]
 
 [sub_resource type="Curve2D" id="Curve2D_x7any"]
 _data = {
@@ -32,25 +35,75 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CastleCoreHealthLabel" type="Label" parent="Control"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+
+[node name="CastleCoreHealthLabel" type="Label" parent="Control/CanvasLayer"]
 unique_name_in_owner = true
-layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "10
 "
 
-[node name="GoldLabel" type="Label" parent="Control"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+[node name="MarginContainer" type="MarginContainer" parent="Control/CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = 264.0
-offset_right = 318.0
-offset_bottom = 23.0
-grow_horizontal = 0
-text = "Gold: 0"
+anchor_bottom = 1.0
+offset_top = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 8
+
+[node name="TowerActionBar" type="HFlowContainer" parent="Control/CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonBorder" type="TextureRect" parent="Control/CanvasLayer/MarginContainer/TowerActionBar"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_7ddcm")
+
+[node name="FireTowerButton" type="TextureButton" parent="Control/CanvasLayer/MarginContainer/TowerActionBar/ButtonBorder"]
+z_index = 100
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("4_y1vvv")
+tower_resource = ExtResource("5_5j8n2")
+
+[node name="ButtonBorder2" type="TextureRect" parent="Control/CanvasLayer/MarginContainer/TowerActionBar"]
+layout_mode = 2
+texture = ExtResource("3_7ddcm")
+
+[node name="ArrowTowerButton" type="TextureButton" parent="Control/CanvasLayer/MarginContainer/TowerActionBar/ButtonBorder2"]
+z_index = 100
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("4_y1vvv")
+tower_resource = ExtResource("6_xs0hh")
 
 [node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("enemy_path")]
 unique_name_in_owner = true
@@ -59,7 +112,6 @@ enemy_path = NodePath("../Path2D")
 
 [node name="BuildingPlacementManager" parent="." instance=ExtResource("4_wjtmy")]
 unique_name_in_owner = true
-building_data = ExtResource("5_5j8n2")
 
 [node name="EconomyManager" type="Node" parent="."]
 unique_name_in_owner = true

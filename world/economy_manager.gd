@@ -17,7 +17,8 @@ func _on_building_sold(building: Building) -> void:
 	_update_gold_display()
 
 func _update_gold_display() -> void:
-	%GoldLabel.text = "Gold: " + str(_current_gold)
+	pass
+	#%GoldLabel.text = "Gold: " + str(_current_gold)
 
 func can_purchase_building(building_data: BuildingResource) -> bool:
 	return _current_gold >= building_data.gold_cost

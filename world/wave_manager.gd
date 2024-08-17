@@ -32,12 +32,7 @@ func next_wave() -> void:
 	_spawn_timer = 0
 	_enemies_to_spawn += _get_number_of_base_enemies(_current_wave_number)
 	_current_spawn_interval = _get_spawn_interval(_enemies_to_spawn, _current_wave_number)
-
-func _spawn_base_enemies() -> void:
-	var number_of_base_enemies: int = _get_number_of_base_enemies(_current_wave_number)
-	for index in range(number_of_base_enemies):
-		print("Enemy iteration: ", index)
-
+	
 func _get_spawn_interval(enemies_count: int, wave_number: int) -> float:
 	var wave_spawn_time: float = base_spawn_time + (wave_number * spawn_time_scaling_factor)
 	wave_spawn_time = min(wave_spawn_time, max_spawn_time)
@@ -48,7 +43,7 @@ func _get_number_of_base_enemies(wave_number: int) -> int:
 	enemies *= 1 + randf_range(-randomness_factor, randomness_factor)
 	return int(round(enemies))
 
-func _spawn_enemy() -> void:
+func _spawn_enemy():
 	if enemy_scene:
 		var enemy_instance : BaseEnemy = enemy_scene.instantiate()
 		enemy_instance.reached_castle.connect(_enemy_reached_castle)
@@ -59,7 +54,7 @@ func _spawn_enemy() -> void:
 func _try_spawn_enemies(delta: float) -> void:
 	if _enemies_to_spawn > 0:
 		_spawn_timer += delta
-
+		
 		if _spawn_timer >= _current_spawn_interval:
 			_spawn_enemy()
 			_spawn_timer = 0.0
