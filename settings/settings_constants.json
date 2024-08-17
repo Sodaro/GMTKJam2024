@@ -1,0 +1,9 @@
+{
+	"master_volume": {"section": "audio", "fallback": 0.7},
+	"music_volume": {"section": "audio", "fallback": 1.0},
+	"sfx_volume": {"section": "audio", "fallback": 1.0},
+
+	"window_width": {"section": "display", "fallback": 320},
+	"window_height": {"section": "display", "fallback": 240},
+	"display_mode": {"section": "display", "fallback": 0},
+}

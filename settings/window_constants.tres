@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="WindowConstants" load_steps=2 format=3 uid="uid://bdli431qsm5pj"]
+
+[ext_resource type="Script" path="res://settings/window_constants.gd" id="1_x4ksc"]
+
+[resource]
+script = ExtResource("1_x4ksc")

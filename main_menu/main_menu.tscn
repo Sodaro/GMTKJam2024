@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqm4la4b32qcr"]
+
+[ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_ecrke"]
+[ext_resource type="PackedScene" uid="uid://bshacrjb6jm2d" path="res://main_menu/options_panel.tscn" id="2_wxgqc"]
+
+[sub_resource type="Gradient" id="Gradient_30k2h"]
+interpolation_mode = 2
+colors = PackedColorArray(0.432703, 0.438121, 0.565299, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7147d"]
+gradient = SubResource("Gradient_30k2h")
+width = 320
+height = 240
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0.451923, 0.521368)
+
+[sub_resource type="Theme" id="Theme_7vlh5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xsjhj"]
+font_size = 32
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ecrke")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_7147d")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 2
+offset_left = 95.5
+offset_right = 224.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = SubResource("Theme_7vlh5")
+text = "Placeholder Title"
+label_settings = SubResource("LabelSettings_xsjhj")
+
+[node name="MainButtonContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_right = 70.0
+offset_bottom = 33.0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="PlayButton" type="Button" parent="MainButtonContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ExitButton")
+focus_neighbor_bottom = NodePath("../OptionsButton")
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="MainButtonContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_bottom = NodePath("../ExitButton")
+text = "Options"
+
+[node name="ExitButton" type="Button" parent="MainButtonContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../OptionsButton")
+focus_neighbor_bottom = NodePath(".")
+text = "Exit"
+
+[node name="OptionsPanel" parent="." instance=ExtResource("2_wxgqc")]
+layout_mode = 1
+
+[connection signal="pressed" from="MainButtonContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainButtonContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainButtonContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="back_button_pressed" from="OptionsPanel" to="." method="_on_options_panel_back_button_pressed"]

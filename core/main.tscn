@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqjqwsawekfvr"]
+
+[ext_resource type="Script" path="res://core/main.gd" id="1_ybg65"]
+[ext_resource type="Script" path="res://core/game_world.gd" id="2_e7qdl"]
+[ext_resource type="Script" path="res://core/gui.gd" id="3_7g8to"]
+[ext_resource type="PackedScene" uid="uid://bqm4la4b32qcr" path="res://main_menu/main_menu.tscn" id="4_4otnu"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_ybg65")
+
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("2_e7qdl")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_7g8to")
+
+[node name="MainMenu" parent="GUI" instance=ExtResource("4_4otnu")]
+layout_mode = 1
