@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvxaabynny85q"]
 
-[ext_resource type="Script" path="res://world/building_placement_manager.gd" id="1_n6pby"]
+[ext_resource type="Script" path="res://building/building_placement_manager.gd" id="1_n6pby"]
 [ext_resource type="PackedScene" uid="uid://basggbj0vd44m" path="res://building/building_grid.tscn" id="2_eqf6i"]
 [ext_resource type="AudioStream" uid="uid://dcrteyy2xkp0k" path="res://audio/sfx/sell tower.wav" id="3_xg6gg"]
 [ext_resource type="AudioStream" uid="uid://brwji4anottcf" path="res://audio/sfx/place tower.wav" id="3_xsxqn"]

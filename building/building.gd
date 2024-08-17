@@ -1,24 +1,12 @@
-extends Node2D
+class_name Building extends Node2D
+var gold_cost: int = 0
+var refund_value: int = 0
 
-class_name Building
+func get_health_fraction() -> float:
+	return 1.0
 
-var enemy_target: BaseEnemy
-
-var nearby_enemies: Array[BaseEnemy]
-var enemy_index: int = 0
-
-func _ready() -> void:
-	$EnemyDetector.enemy_detected.connect(_on_enemy_detected)
-
-func _process(delta: float) -> void:
-	if enemy_target != null:
-		enemy_target.take_damage(3.5 * delta)
-	elif nearby_enemies.size() > (enemy_index + 1):
-		enemy_index += 1
-		enemy_target = nearby_enemies[enemy_index]
-
-func _on_enemy_detected(enemy: BaseEnemy) -> void:
-	nearby_enemies.push_back(enemy)
-	if enemy_target == null:
-		enemy_target = enemy
-		process_mode = PROCESS_MODE_ALWAYS
+func get_sell_value() -> int:
+	# lower health -> higher alpha -> less money received for selling
+	var damage_alpha: float = lerpf(0.0, 1.0, 1 - get_health_fraction())
+	var deduction: float = damage_alpha * refund_value
+	return refund_value

@@ -1,27 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://t6kfg7l8kjtx"]
+[gd_scene load_steps=5 format=3 uid="uid://t6kfg7l8kjtx"]
 
 [ext_resource type="Script" path="res://building/building.gd" id="1_u1xsu"]
-[ext_resource type="Script" path="res://building/enemy_detector.gd" id="2_o01du"]
+[ext_resource type="PackedScene" uid="uid://8ug7o6u0bmuv" path="res://building/components/tower_enemy_detector_component.tscn" id="2_me7c6"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4qfgp"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wyu7x"]
+load_path = "res://.godot/imported/towers.png-09aaad795d21d55f51dc66cd97dd5056.ctex"
 
-[sub_resource type="Gradient" id="Gradient_w8jmf"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ddemb"]
-gradient = SubResource("Gradient_w8jmf")
-width = 16
-height = 16
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4uyl"]
+atlas = SubResource("CompressedTexture2D_wyu7x")
+region = Rect2(0, 0, 16, 16)
 
 [node name="Building" type="Node2D"]
 script = ExtResource("1_u1xsu")
 
-[node name="EnemyDetector" type="Area2D" parent="."]
-script = ExtResource("2_o01du")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
-shape = SubResource("CircleShape2D_4qfgp")
+[node name="EnemyDetector" parent="." instance=ExtResource("2_me7c6")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_ddemb")
-
-[connection signal="area_shape_entered" from="EnemyDetector" to="EnemyDetector" method="_on_area_shape_entered"]
+texture = SubResource("AtlasTexture_l4uyl")

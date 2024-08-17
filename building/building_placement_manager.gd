@@ -1,6 +1,11 @@
 extends Node2D
 
+class_name BuildingPlacementManager
+
 @onready var _building_grid: BuildingGrid = $BuildingGrid
+
+signal building_purchased(building_data: BuildingResource)
+signal building_sold(building: Building)
 
 var hovered_node: GridNode
 var previous_node: GridNode
@@ -9,7 +14,7 @@ enum BuildMode {BUILD, SELL, SELECT}
 
 var mode: BuildMode = BuildMode.BUILD
 
-var building_scene:Resource = load("res://building/building.tscn")
+@export var building_data: BuildingResource
 
 func _process(_delta: float) -> void:
 	previous_node = hovered_node
@@ -32,13 +37,16 @@ func _process(_delta: float) -> void:
 		BuildMode.SELECT:
 			pass
 		BuildMode.BUILD:
-			if !hovered_node.has_building():
-				hovered_node.build(building_scene)
+			if !hovered_node.has_building() && %EconomyManager.can_purchase_building(building_data):
+				hovered_node.build(building_data)
+				building_purchased.emit(building_data)
 				$PlaceTowerAudioPlayer.play()
+
 			pass
 		BuildMode.SELL:
 			if hovered_node.has_building():
-				hovered_node.sell_building()
+				building_sold.emit(hovered_node.get_building())
+				hovered_node.remove_building()
 				$SellTowerAudioPlayer.play()
 			pass
 

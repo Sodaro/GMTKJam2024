@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=3 format=3 uid="uid://ql4eepku077d"]
+
+[ext_resource type="PackedScene" uid="uid://b86e2of4eyeon" path="res://building/fire_tower/fire_tower.tscn" id="1_vieur"]
+[ext_resource type="Script" path="res://building/building_resource/building_resource.gd" id="2_5phnr"]
+
+[resource]
+script = ExtResource("2_5phnr")
+display_name = &"FireTower"
+gold_cost = 5
+building_scene = ExtResource("1_vieur")

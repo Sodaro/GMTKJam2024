@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://b86e2of4eyeon"]
+
+[ext_resource type="Texture2D" uid="uid://c6iicme8qqytd" path="res://art/tower_atlas.tres" id="1_1hvj8"]
+[ext_resource type="Script" path="res://building/fire_tower/fire_tower.gd" id="1_eb5r8"]
+[ext_resource type="PackedScene" uid="uid://8ug7o6u0bmuv" path="res://building/components/tower_enemy_detector_component.tscn" id="3_5pwqk"]
+[ext_resource type="Script" path="res://building/components/tower_health_component.gd" id="4_eu3cq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pum0"]
+atlas = ExtResource("1_1hvj8")
+region = Rect2(0, 0, 16, 16)
+
+[node name="FireTower" type="Node2D"]
+script = ExtResource("1_eb5r8")
+
+[node name="TowerEnemyDetectorComponent" parent="." instance=ExtResource("3_5pwqk")]
+detection_range = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_0pum0")
+
+[node name="TowerHealthComponent" type="Node2D" parent="."]
+script = ExtResource("4_eu3cq")
+
+[connection signal="enemy_detected" from="TowerEnemyDetectorComponent" to="." method="_on_tower_enemy_detector_component_enemy_detected"]
+[connection signal="enemy_lost" from="TowerEnemyDetectorComponent" to="." method="_on_tower_enemy_detector_component_enemy_lost"]
+[connection signal="health_changed" from="TowerHealthComponent" to="." method="_on_tower_health_component_health_changed"]
+[connection signal="health_depleted" from="TowerHealthComponent" to="." method="_on_tower_health_component_health_depleted"]

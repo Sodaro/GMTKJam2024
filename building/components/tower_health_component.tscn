@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwfeurutxf2e"]
+
+[ext_resource type="Script" path="res://building/components/tower_health_component.gd" id="1_aq6py"]
+
+[node name="TowerHealthComponent" type="Node2D"]
+script = ExtResource("1_aq6py")
