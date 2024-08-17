@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bli8m2ugwuown"]
+[gd_scene load_steps=9 format=3 uid="uid://bli8m2ugwuown"]
 
-[ext_resource type="Texture2D" uid="uid://ml1dtfxabreq" path="res://icon.svg" id="1_0b1qw"]
 [ext_resource type="Script" path="res://enemies/enemy_base.gd" id="1_a1h84"]
 [ext_resource type="AudioStream" uid="uid://dfsegxtopaep8" path="res://audio/sfx/Enemy killed coin.wav" id="2_tjtvt"]
+[ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="3_dccv4"]
 [ext_resource type="Script" path="res://enemies/jump_behavior.gd" id="3_kyaio"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ck8xn"]
+atlas = ExtResource("3_dccv4")
+region = Rect2(88, 0, 8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vtge"]
 size = Vector2(40, 40)
@@ -26,8 +30,7 @@ script = ExtResource("1_a1h84")
 death_sfx = ExtResource("2_tjtvt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_0b1qw")
+texture = SubResource("AtlasTexture_ck8xn")
 
 [node name="JumpBehavior" type="Node" parent="."]
 script = ExtResource("3_kyaio")
@@ -38,17 +41,17 @@ script = ExtResource("3_kyaio")
 shape = SubResource("RectangleShape2D_7vtge")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -30.0
-offset_top = -45.0
-offset_right = 30.0
-offset_bottom = -32.0
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = -10.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_0ytla")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qqrgq")
 max_value = 10.0
