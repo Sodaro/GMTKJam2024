@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c250i4h2asauj"]
+
+[ext_resource type="Script" path="res://audio/one_shot_audio.gd" id="1_gyhds"]
+
+[node name="OneShotAudio" type="AudioStreamPlayer2D"]
+bus = &"SFX"
+script = ExtResource("1_gyhds")

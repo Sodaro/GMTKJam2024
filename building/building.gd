@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 		enemy_index += 1
 		enemy_target = nearby_enemies[enemy_index]
 
-func _on_enemy_detected(enemy: BaseEnemy):
+func _on_enemy_detected(enemy: BaseEnemy) -> void:
 	nearby_enemies.push_back(enemy)
 	if enemy_target == null:
 		enemy_target = enemy

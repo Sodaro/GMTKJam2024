@@ -18,17 +18,17 @@ func _ready() -> void:
 
 func _generate_grid() -> void:
 	grid_nodes.resize(rows * cols)
-	for i in rows * cols:
+	for i: int in rows * cols:
 		var x: int = i % cols
-		var y: int = i / cols
+		var y: int = int(i / cols)
 		var instance: GridNode = grid_node_scene.instantiate()
 		instance.position = Vector2(x * node_size, y * node_size)
 		add_child(instance)
 		grid_nodes[i] = instance
 
 func get_grid_node_at_mouse() -> GridNode:
-	var mouse_pos:Vector2 = get_global_mouse_position()
-	var snapped_mouse_pos:Vector2
+	var mouse_pos: Vector2 = get_global_mouse_position()
+	var snapped_mouse_pos: Vector2
 
 	if mouse_pos.x > 0:
 		snapped_mouse_pos.x = clampf(roundf(mouse_pos.x / node_size), 0, cols - 1)
@@ -36,6 +36,6 @@ func get_grid_node_at_mouse() -> GridNode:
 	if mouse_pos.y > 0:
 		snapped_mouse_pos.y = clampf(roundf(mouse_pos.y / node_size), 0, rows - 1)
 
-	var mouse_cell:int = snapped_mouse_pos.y * cols + snapped_mouse_pos.x
+	var mouse_cell: int = int(snapped_mouse_pos.y * cols + snapped_mouse_pos.x)
 	mouse_cell = clampi(mouse_cell, 0, grid_nodes.size()-1)
 	return grid_nodes[mouse_cell]

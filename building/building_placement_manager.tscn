@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvxaabynny85q"]
+
+[ext_resource type="Script" path="res://world/building_placement_manager.gd" id="1_n6pby"]
+[ext_resource type="PackedScene" uid="uid://basggbj0vd44m" path="res://building/building_grid.tscn" id="2_eqf6i"]
+[ext_resource type="AudioStream" uid="uid://dcrteyy2xkp0k" path="res://audio/sfx/sell tower.wav" id="3_xg6gg"]
+[ext_resource type="AudioStream" uid="uid://brwji4anottcf" path="res://audio/sfx/place tower.wav" id="3_xsxqn"]
+
+[node name="BuildingPlacementManager" type="Node2D"]
+script = ExtResource("1_n6pby")
+
+[node name="BuildingGrid" parent="." instance=ExtResource("2_eqf6i")]
+
+[node name="SellTowerAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_xg6gg")
+max_polyphony = 5
+bus = &"SFX"
+
+[node name="PlaceTowerAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_xsxqn")
+max_polyphony = 5
+bus = &"SFX"

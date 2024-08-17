@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bli8m2ugwuown"]
+[gd_scene load_steps=8 format=3 uid="uid://bli8m2ugwuown"]
 
 [ext_resource type="Texture2D" uid="uid://ml1dtfxabreq" path="res://icon.svg" id="1_0b1qw"]
 [ext_resource type="Script" path="res://enemies/enemy_base.gd" id="1_a1h84"]
+[ext_resource type="AudioStream" uid="uid://dfsegxtopaep8" path="res://audio/sfx/Enemy killed coin.wav" id="2_tjtvt"]
 [ext_resource type="Script" path="res://enemies/jump_behavior.gd" id="3_kyaio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vtge"]
@@ -22,6 +23,7 @@ border_color = Color(0, 0, 0, 1)
 rotates = false
 loop = false
 script = ExtResource("1_a1h84")
+death_sfx = ExtResource("2_tjtvt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

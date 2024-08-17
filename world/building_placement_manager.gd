@@ -9,9 +9,9 @@ enum BuildMode {BUILD, SELL, SELECT}
 
 var mode: BuildMode = BuildMode.BUILD
 
-var building_scene = load("res://building/building.tscn")
+var building_scene:Resource = load("res://building/building.tscn")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	previous_node = hovered_node
 	hovered_node = _building_grid.get_grid_node_at_mouse()
 	_update_node_highlights()
@@ -34,10 +34,12 @@ func _process(delta: float) -> void:
 		BuildMode.BUILD:
 			if !hovered_node.has_building():
 				hovered_node.build(building_scene)
+				$PlaceTowerAudioPlayer.play()
 			pass
 		BuildMode.SELL:
 			if hovered_node.has_building():
 				hovered_node.sell_building()
+				$SellTowerAudioPlayer.play()
 			pass
 
 	_update_node_highlights()

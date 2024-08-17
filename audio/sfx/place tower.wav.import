@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://brwji4anottcf"
+path="res://.godot/imported/place tower.wav-1f98135da5993229c4820e6c2e399213.sample"
+
+[deps]
+
+source_file="res://audio/sfx/place tower.wav"
+dest_files=["res://.godot/imported/place tower.wav-1f98135da5993229c4820e6c2e399213.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

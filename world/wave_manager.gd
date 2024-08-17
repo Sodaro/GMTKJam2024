@@ -48,7 +48,7 @@ func _get_number_of_base_enemies(wave_number: int) -> int:
 	enemies *= 1 + randf_range(-randomness_factor, randomness_factor)
 	return int(round(enemies))
 
-func _spawn_enemy():
+func _spawn_enemy() -> void:
 	if enemy_scene:
 		var enemy_instance : BaseEnemy = enemy_scene.instantiate()
 		enemy_instance.reached_castle.connect(_enemy_reached_castle)
@@ -59,7 +59,7 @@ func _spawn_enemy():
 func _try_spawn_enemies(delta: float) -> void:
 	if _enemies_to_spawn > 0:
 		_spawn_timer += delta
-		
+
 		if _spawn_timer >= _current_spawn_interval:
 			_spawn_enemy()
 			_spawn_timer = 0.0
