@@ -8,5 +8,6 @@ func _ready() -> void:
 	button_down.connect(_on_button_pressed)
 
 func _on_button_pressed() -> void:
+	Input.action_release("primary_action")
 	%BuildingPlacementManager.building_data = tower_resource
 	tower_clicked.emit(tower_resource)
