@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjv3obretvf5x"]
+
+[ext_resource type="Script" path="res://core/game_world.gd" id="1_qy8cf"]
+[ext_resource type="PackedScene" uid="uid://bli8m2ugwuown" path="res://enemies/blob_enemy.tscn" id="2_p725l"]
+[ext_resource type="PackedScene" uid="uid://cnjye1fb541he" path="res://castle/castle_core.tscn" id="3_g7xh2"]
+
+[sub_resource type="Curve2D" id="Curve2D_x7any"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 55, 20, 0, 0, 0, 0, 55, 148)
+}
+point_count = 2
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_qy8cf")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(201, -20)
+curve = SubResource("Curve2D_x7any")
+
+[node name="Blob Enemy" parent="Path2D" instance=ExtResource("2_p725l")]
+position = Vector2(55, 20)
+rotation = 1.5708
+
+[node name="CastleCore" parent="." node_paths=PackedStringArray("path_node") instance=ExtResource("3_g7xh2")]
+unique_name_in_owner = true
+position = Vector2(190, 247)
+path_node = NodePath("../Path2D")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CastleCoreHealthLabel" type="Label" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "10
+"
+
+[connection signal="reached_castle" from="Path2D/Blob Enemy" to="." method="_on_blob_enemy_reached_castle"]
+[connection signal="health_changed" from="CastleCore" to="." method="_on_castle_core_health_changed"]

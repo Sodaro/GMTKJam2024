@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bli8m2ugwuown"]
+
+[ext_resource type="Texture2D" uid="uid://ml1dtfxabreq" path="res://icon.svg" id="1_0b1qw"]
+[ext_resource type="Script" path="res://enemies/enemy_base.gd" id="1_a1h84"]
+[ext_resource type="Script" path="res://enemies/jump_behavior.gd" id="3_kyaio"]
+
+[node name="Blob Enemy" type="PathFollow2D"]
+loop = false
+script = ExtResource("1_a1h84")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0b1qw")
+
+[node name="JumpBehavior" type="Node" parent="."]
+script = ExtResource("3_kyaio")

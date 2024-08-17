@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnjye1fb541he"]
+
+[ext_resource type="Texture2D" uid="uid://ml1dtfxabreq" path="res://icon.svg" id="1_88nlm"]
+[ext_resource type="Script" path="res://castle/castle_core.gd" id="1_ws68d"]
+
+[node name="CastleCore" type="Node2D"]
+script = ExtResource("1_ws68d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_88nlm")
