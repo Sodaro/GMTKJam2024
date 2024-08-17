@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcqem424ydsfy"]
+
+[ext_resource type="Script" path="res://building/grid_node.gd" id="1_8g1pd"]
+[ext_resource type="Texture2D" uid="uid://ml1dtfxabreq" path="res://icon.svg" id="1_gqd1m"]
+
+[node name="GridNode" type="Node2D"]
+script = ExtResource("1_8g1pd")
+_default_color = Color(1, 1, 1, 0.313726)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.313726)
+z_index = -4096
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_gqd1m")

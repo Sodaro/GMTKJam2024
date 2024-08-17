@@ -17,5 +17,6 @@ func _process(delta: float) -> void:
 
 func take_damage(amount: float) -> void:
 	health -= amount
+	$ProgressBar.value = health
 	if health <= 0:
 		queue_free()

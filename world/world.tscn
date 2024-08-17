@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjv3obretvf5x"]
+[gd_scene load_steps=7 format=3 uid="uid://cjv3obretvf5x"]
 
 [ext_resource type="Script" path="res://core/game_world.gd" id="1_qy8cf"]
 [ext_resource type="PackedScene" uid="uid://cnjye1fb541he" path="res://castle/castle_core.tscn" id="3_g7xh2"]
+[ext_resource type="Script" path="res://world/building_placement_manager.gd" id="4_01pvk"]
+[ext_resource type="PackedScene" uid="uid://basggbj0vd44m" path="res://building/building_grid.tscn" id="4_6377n"]
 [ext_resource type="Script" path="res://world/wave_manager.gd" id="4_adcc8"]
 
 [sub_resource type="Curve2D" id="Curve2D_x7any"]
@@ -41,5 +43,10 @@ text = "10
 unique_name_in_owner = true
 script = ExtResource("4_adcc8")
 enemy_path = NodePath("../Path2D")
+
+[node name="BuildingPlacementManager" type="Node2D" parent="."]
+script = ExtResource("4_01pvk")
+
+[node name="BuildingGrid" parent="BuildingPlacementManager" instance=ExtResource("4_6377n")]
 
 [connection signal="health_changed" from="CastleCore" to="." method="_on_castle_core_health_changed"]

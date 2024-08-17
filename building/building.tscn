@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://t6kfg7l8kjtx"]
+
+[ext_resource type="Script" path="res://building/building.gd" id="1_u1xsu"]
+[ext_resource type="Script" path="res://building/enemy_detector.gd" id="2_o01du"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4qfgp"]
+
+[sub_resource type="Gradient" id="Gradient_w8jmf"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ddemb"]
+gradient = SubResource("Gradient_w8jmf")
+width = 16
+height = 16
+
+[node name="Building" type="Node2D"]
+script = ExtResource("1_u1xsu")
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+script = ExtResource("2_o01du")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
+shape = SubResource("CircleShape2D_4qfgp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_ddemb")
+
+[connection signal="area_shape_entered" from="EnemyDetector" to="EnemyDetector" method="_on_area_shape_entered"]

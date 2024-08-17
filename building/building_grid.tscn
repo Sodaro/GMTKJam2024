@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://basggbj0vd44m"]
+
+[ext_resource type="Script" path="res://building/building_grid.gd" id="1_6ympw"]
+
+[node name="BuildingGrid" type="Node2D"]
+script = ExtResource("1_6ympw")

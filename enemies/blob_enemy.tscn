@@ -1,10 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://bli8m2ugwuown"]
+[gd_scene load_steps=7 format=3 uid="uid://bli8m2ugwuown"]
 
 [ext_resource type="Texture2D" uid="uid://ml1dtfxabreq" path="res://icon.svg" id="1_0b1qw"]
 [ext_resource type="Script" path="res://enemies/enemy_base.gd" id="1_a1h84"]
 [ext_resource type="Script" path="res://enemies/jump_behavior.gd" id="3_kyaio"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vtge"]
+size = Vector2(40, 40)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ytla"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qqrgq"]
+bg_color = Color(0.359177, 0.699587, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
 [node name="Blob Enemy" type="PathFollow2D"]
+rotates = false
 loop = false
 script = ExtResource("1_a1h84")
 
@@ -14,3 +29,27 @@ texture = ExtResource("1_0b1qw")
 
 [node name="JumpBehavior" type="Node" parent="."]
 script = ExtResource("3_kyaio")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_7vtge")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -45.0
+offset_right = 30.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_0ytla")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qqrgq")
+max_value = 10.0
+step = 0.0
+value = 10.0
+show_percentage = false
