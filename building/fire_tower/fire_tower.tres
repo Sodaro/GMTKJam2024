@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BuildingResource" load_steps=5 format=3 uid="uid://ql4eepku077d"]
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=7 format=3 uid="uid://ql4eepku077d"]
 
 [ext_resource type="PackedScene" uid="uid://b86e2of4eyeon" path="res://building/fire_tower/fire_tower.tscn" id="1_vieur"]
 [ext_resource type="Texture2D" uid="uid://bw2nwubqsxga0" path="res://art/towers.png" id="2_1re2a"]
@@ -8,9 +8,19 @@
 atlas = ExtResource("2_1re2a")
 region = Rect2(16, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uogyy"]
+atlas = ExtResource("2_1re2a")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5o4j6"]
+atlas = ExtResource("2_1re2a")
+region = Rect2(48, 0, 16, 16)
+
 [resource]
 script = ExtResource("2_5phnr")
 display_name = &"FireTower"
 gold_cost = 5
 building_scene = ExtResource("1_vieur")
 display_texture = SubResource("AtlasTexture_1avcc")
+hover_texture = SubResource("AtlasTexture_uogyy")
+pressed_texture = SubResource("AtlasTexture_5o4j6")
