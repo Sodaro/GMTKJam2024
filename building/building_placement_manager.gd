@@ -39,6 +39,8 @@ func _process(_delta: float) -> void:
 		$PlacementPreview.texture = building_data.display_texture
 		$PlacementPreview.global_position = hovered_node.global_position
 
+	_update_node_highlights()
+
 	if !Input.is_action_pressed("primary_action"):
 		return
 
@@ -59,10 +61,10 @@ func _process(_delta: float) -> void:
 				$SellTowerAudioPlayer.play()
 			pass
 
-	_update_node_highlights()
+
 
 func _update_node_highlights() -> void:
 	if previous_node != null && previous_node != hovered_node:
 		previous_node.clear_highlight()
 	if hovered_node:
-		hovered_node.show_highlight()
+		hovered_node.show_highlight(mode)

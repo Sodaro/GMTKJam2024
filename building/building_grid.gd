@@ -4,12 +4,12 @@ class_name BuildingGrid
 
 var grid_node_scene: Resource = load("res://building/grid_node.tscn")
 
-var cols: int = 20
-var rows: int = 15
+var cols: int = 40
+var rows: int = 30
 
-var x_offset: int = 8
-var y_offset: int = 8
-var node_size: int = 16
+var x_offset: int = 0
+var y_offset: int = 0
+var node_size: int = 8
 
 var grid_nodes: Array[GridNode]
 
@@ -19,8 +19,8 @@ func generate_grid(allowed_placement_zones: Array[PlacementZone]) -> void:
 		var x: int = i % cols
 		var y: int = int(i / cols)
 		var instance: GridNode = grid_node_scene.instantiate()
-		var pos := Vector2(x * node_size, y * node_size)
-		instance.position = Vector2(x * node_size, y * node_size)
+		var pos := Vector2(x * node_size + x_offset, y * node_size + y_offset)
+		instance.position = pos
 		add_child(instance)
 		grid_nodes[i] = instance
 		var is_locked: bool = true

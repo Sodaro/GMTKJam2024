@@ -14,6 +14,7 @@ region = Rect2(0, 16, 16, 16)
 script = ExtResource("1_w82hm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 texture = SubResource("AtlasTexture_sf47x")
 
 [node name="TowerEnemyDetectorComponent" parent="." instance=ExtResource("1_vxvdb")]

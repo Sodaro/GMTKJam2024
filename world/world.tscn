@@ -423,13 +423,13 @@ script = ExtResource("5_41gpm")
 
 [node name="PlacementZone" parent="." instance=ExtResource("11_pmp1l")]
 position = Vector2(288, 40)
-width_tiles = 2
+width_tiles = 8
 height_tiles = 5
 
 [node name="PlacementZone2" parent="." instance=ExtResource("11_pmp1l")]
-position = Vector2(208, 80)
-width_tiles = 5
-height_tiles = 9
+position = Vector2(204, 88)
+width_tiles = 9
+height_tiles = 20
 
 [connection signal="health_changed" from="CastleCore" to="." method="_on_castle_core_health_changed"]
 [connection signal="button_down" from="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/NextWaveButton" to="WaveManager" method="_on_next_wave_button_button_down"]
