@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cjv3obretvf5x"]
+[gd_scene load_steps=34 format=3 uid="uid://cjv3obretvf5x"]
 
 [ext_resource type="Script" path="res://core/game_world.gd" id="1_qy8cf"]
 [ext_resource type="PackedScene" uid="uid://bq1ol3ketb4xf" path="res://level_tiles.tscn" id="2_hsrn2"]
@@ -10,14 +10,13 @@
 [ext_resource type="Resource" uid="uid://ql4eepku077d" path="res://building/building_data/fire_tower.tres" id="5_5j8n2"]
 [ext_resource type="Script" path="res://world/economy_manager.gd" id="5_41gpm"]
 [ext_resource type="Resource" uid="uid://doqbxp82av5h" path="res://building/building_data/arrow_tower.tres" id="6_xs0hh"]
-[ext_resource type="LabelSettings" uid="uid://m7fmqhjh2d80" path="res://main_menu/options_label.tres" id="8_lbl82"]
 [ext_resource type="Script" path="res://world/game_information.gd" id="8_yplnw"]
 [ext_resource type="Texture2D" uid="uid://cwuh03pnbufwf" path="res://art/sell_icon.png" id="9_mk3p0"]
 [ext_resource type="Texture2D" uid="uid://dcemxwwsv4bqj" path="res://art/frame.png" id="10_4l0ab"]
 [ext_resource type="Script" path="res://world/sell_button.gd" id="10_c56xj"]
 [ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="10_hy4ok"]
 [ext_resource type="Texture2D" uid="uid://cs7kbn330y2wu" path="res://art/next_buttons.png" id="11_oca11"]
-[ext_resource type="PackedScene" uid="uid://bhowmgv1gdyyd" path="res://placement_zone.tscn" id="11_pmp1l"]
+[ext_resource type="PackedScene" path="res://placement_zone.tscn" id="11_pmp1l"]
 [ext_resource type="Resource" uid="uid://bps51wxt61gqf" path="res://enemies/snake_resource.tres" id="17_trbk2"]
 
 [sub_resource type="Curve2D" id="Curve2D_x7any"]
@@ -43,6 +42,10 @@ region = Rect2(0, 16, 16, 16)
 atlas = ExtResource("10_hy4ok")
 region = Rect2(48, 48, 8, 8)
 
+[sub_resource type="LabelSettings" id="LabelSettings_wo8sx"]
+line_spacing = 0.0
+font_size = 8
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_k62bq"]
 atlas = ExtResource("10_hy4ok")
 region = Rect2(64, 40, 8, 8)
@@ -54,10 +57,6 @@ region = Rect2(48, 56, 8, 8)
 [sub_resource type="AtlasTexture" id="AtlasTexture_vcj1v"]
 atlas = ExtResource("10_hy4ok")
 region = Rect2(32, 8, 8, 8)
-
-[sub_resource type="LabelSettings" id="LabelSettings_wo8sx"]
-line_spacing = 0.0
-font_size = 8
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e825t"]
 atlas = ExtResource("10_hy4ok")
@@ -139,6 +138,7 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_bottom = 4
 
@@ -219,125 +219,137 @@ texture_hover = SubResource("AtlasTexture_jffq5")
 script = ExtResource("10_c56xj")
 
 [node name="GameInformation" type="HBoxContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(88, 32)
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 8
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 2.0
 theme_override_constants/separation = 0
 script = ExtResource("8_yplnw")
 
-[node name="HFlowContainer" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
-custom_minimum_size = Vector2(34, 0)
+[node name="VFlowContainer4" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
+custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = -2
 
-[node name="HeartIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/HFlowContainer"]
+[node name="HFlowContainer" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer4"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HeartIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer4/HFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_tw3gx")
 stretch_mode = 4
 
-[node name="LifeLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/HFlowContainer"]
+[node name="LifeLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer4/HFlowContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "999"
-label_settings = ExtResource("8_lbl82")
+label_settings = SubResource("LabelSettings_wo8sx")
+justification_flags = 0
 
-[node name="HFlowContainer2" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
-custom_minimum_size = Vector2(34, 0)
+[node name="HFlowContainer2" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer4"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 0
 
-[node name="CoinIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/HFlowContainer2"]
+[node name="CoinIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer4/HFlowContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_k62bq")
 stretch_mode = 4
 
-[node name="GoldLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/HFlowContainer2"]
+[node name="GoldLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer4/HFlowContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 text = "999"
-label_settings = ExtResource("8_lbl82")
+label_settings = SubResource("LabelSettings_wo8sx")
+justification_flags = 0
 
-[node name="HFlowContainer3" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
-custom_minimum_size = Vector2(34, 0)
+[node name="HFlowContainer3" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer4"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 0
 
-[node name="LevelIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/HFlowContainer3"]
+[node name="LevelIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer4/HFlowContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_2iaor")
 stretch_mode = 4
 
-[node name="LevelLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/HFlowContainer3"]
+[node name="LevelLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer4/HFlowContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 text = "999"
-label_settings = ExtResource("8_lbl82")
+label_settings = SubResource("LabelSettings_wo8sx")
+justification_flags = 0
 
-[node name="VFlowContainer" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
+[node name="VFlowContainer5" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VFlowContainer" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 4
+size_flags_vertical = 6
 
-[node name="SnakeIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer"]
+[node name="SnakeIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/VFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 texture = SubResource("AtlasTexture_vcj1v")
 
-[node name="SnakeLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer"]
+[node name="SnakeLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/VFlowContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "999"
 label_settings = SubResource("LabelSettings_wo8sx")
 justification_flags = 0
 
-[node name="VFlowContainer2" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
+[node name="VFlowContainer2" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 4
+size_flags_vertical = 6
 
-[node name="GhostIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer2"]
+[node name="GhostIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/VFlowContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 texture = SubResource("AtlasTexture_e825t")
 stretch_mode = 4
 
-[node name="GhostLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer2"]
+[node name="GhostLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/VFlowContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "999"
 label_settings = SubResource("LabelSettings_wo8sx")
 
-[node name="VFlowContainer3" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
+[node name="VFlowContainer3" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 4
+size_flags_vertical = 6
 
-[node name="SkeletonIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer3"]
+[node name="SkeletonIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/VFlowContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 texture = SubResource("AtlasTexture_4pvcb")
 stretch_mode = 4
 
-[node name="SkeletonLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer3"]
+[node name="SkeletonLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/VFlowContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "999"
@@ -345,7 +357,9 @@ label_settings = SubResource("LabelSettings_wo8sx")
 
 [node name="NextWaveButton" type="TextureButton" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
 layout_mode = 2
+size_flags_horizontal = 10
 size_flags_vertical = 4
+size_flags_stretch_ratio = 4.0
 texture_normal = SubResource("AtlasTexture_8hjj4")
 texture_pressed = SubResource("AtlasTexture_c3nd1")
 texture_hover = SubResource("AtlasTexture_wjoey")
