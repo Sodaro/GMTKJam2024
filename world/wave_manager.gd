@@ -38,6 +38,9 @@ func restart() -> void:
 	_spawn_timer = 0
 
 func next_wave() -> void:
+	if _max_level_reached:
+		return
+
 	if _current_wave_number >= max_level && !_max_level_reached:
 		_max_level_reached = true
 		on_max_level_reached.emit()
@@ -73,6 +76,9 @@ func _spawn_enemy():
 		print("Enemy scene is not assigned!")
 
 func _try_spawn_enemies(delta: float) -> void:
+	if _level_finished:
+		return
+
 	if _has_finished() && !_level_finished:
 		_level_finished = true
 		on_level_finished.emit()

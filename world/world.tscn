@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cjv3obretvf5x"]
+[gd_scene load_steps=33 format=3 uid="uid://cjv3obretvf5x"]
 
 [ext_resource type="Script" path="res://core/game_world.gd" id="1_qy8cf"]
 [ext_resource type="PackedScene" uid="uid://bq1ol3ketb4xf" path="res://level_tiles.tscn" id="2_hsrn2"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://doqbxp82av5h" path="res://building/arrow_tower/arrow_tower.tres" id="6_xs0hh"]
 [ext_resource type="LabelSettings" uid="uid://m7fmqhjh2d80" path="res://main_menu/options_label.tres" id="8_lbl82"]
 [ext_resource type="Script" path="res://world/game_information.gd" id="8_yplnw"]
+[ext_resource type="Texture2D" uid="uid://cwuh03pnbufwf" path="res://art/sell_icon.png" id="9_mk3p0"]
 [ext_resource type="Texture2D" uid="uid://dcemxwwsv4bqj" path="res://art/frame.png" id="10_4l0ab"]
 [ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="10_hy4ok"]
 [ext_resource type="Texture2D" uid="uid://cs7kbn330y2wu" path="res://art/next_buttons.png" id="11_oca11"]
@@ -27,6 +28,18 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 128, 212, 0, 0, 0, 0, 31, 212, 0, 0, 0, 0, 31, 124, 0, 0, 0, 0, -48, 124, 0, 0, 0, 0, -48, 162, 0, 0, 0, 0, -26, 163, 0, 0, 0, 0, -26, 212, 0, 0, 0, 0, -96, 212, 0, 0, 0, 0, -96, 148, 0, 0, 0, 0, -129, 148, 0, 0, 0, 0, -129, 75)
 }
 point_count = 11
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dq4j"]
+atlas = ExtResource("9_mk3p0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahj10"]
+atlas = ExtResource("9_mk3p0")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jffq5"]
+atlas = ExtResource("9_mk3p0")
+region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tw3gx"]
 atlas = ExtResource("10_hy4ok")
@@ -116,7 +129,8 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_bottom = 4
 
 [node name="TowerActionBar" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/MarginContainer"]
-custom_minimum_size = Vector2(52, 0)
+clip_contents = true
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
@@ -165,6 +179,29 @@ grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("4_y1vvv")
 tower_resource = ExtResource("6_xs0hh")
+
+[node name="ButtonBorder3" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/MarginContainer/TowerActionBar"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_7ddcm")
+
+[node name="SellButton" type="TextureButton" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/MarginContainer/TowerActionBar/ButtonBorder3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_8dq4j")
+texture_pressed = SubResource("AtlasTexture_ahj10")
+texture_hover = SubResource("AtlasTexture_jffq5")
 
 [node name="GameInformation" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
 custom_minimum_size = Vector2(0, 32)
