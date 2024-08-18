@@ -11,5 +11,5 @@ func _ready() -> void:
 
 func _on_button_pressed() -> void:
 	Input.action_release("primary_action")
-	%BuildingPlacementManager.building_data = tower_resource
+	%BuildingPlacementManager.enable_build_mode(tower_resource)
 	tower_clicked.emit(tower_resource)

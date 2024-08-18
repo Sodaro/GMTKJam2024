@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://enemies/enemy_base.gd" id="1_a1h84"]
 [ext_resource type="AudioStream" uid="uid://dfsegxtopaep8" path="res://audio/sfx/Enemy killed coin.wav" id="2_tjtvt"]
 [ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="3_dccv4"]
-[ext_resource type="PackedScene" path="res://enemies/MonsterBurnableComponent.tscn" id="4_b43nw"]
+[ext_resource type="PackedScene" uid="uid://dl6wxrolbrnu6" path="res://enemies/MonsterBurnableComponent.tscn" id="4_b43nw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ck8xn"]
 atlas = ExtResource("3_dccv4")

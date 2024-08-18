@@ -19,7 +19,8 @@ region = Rect2(48, 0, 16, 16)
 [resource]
 script = ExtResource("2_5phnr")
 display_name = &"Fire Tower"
-gold_cost = 5
+gold_cost = 10
+base_refund_value = 6
 building_scene = ExtResource("1_vieur")
 display_texture = SubResource("AtlasTexture_1avcc")
 hover_texture = SubResource("AtlasTexture_uogyy")

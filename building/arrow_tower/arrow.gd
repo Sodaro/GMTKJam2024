@@ -8,13 +8,16 @@ var _move_duration: float
 var _enemy_pos: Vector2
 var _move_timer: float
 
-func _init(arrow_texture: Texture2D, start_pos: Vector2, target: BaseEnemy, move_duration: float) -> void:
+var _damage: float
+
+func _init(arrow_texture: Texture2D, start_pos: Vector2, target: BaseEnemy, arrow_damage: float, move_duration: float) -> void:
 	global_position = start_pos
 	_start_pos = start_pos
 	_enemy_target = target
 	_move_duration = move_duration
 	_enemy_pos = _enemy_target.global_position
 	texture = arrow_texture
+	_damage = arrow_damage
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -26,5 +29,5 @@ func _process(delta: float) -> void:
 	look_at(_enemy_pos)
 	if _move_timer >= _move_duration:
 		if _enemy_target != null:
-			_enemy_target.take_damage(1.0)
+			_enemy_target.take_damage(_damage)
 		queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cjv3obretvf5x"]
+[gd_scene load_steps=34 format=3 uid="uid://cjv3obretvf5x"]
 
 [ext_resource type="Script" path="res://core/game_world.gd" id="1_qy8cf"]
 [ext_resource type="PackedScene" uid="uid://bq1ol3ketb4xf" path="res://level_tiles.tscn" id="2_hsrn2"]
@@ -7,16 +7,17 @@
 [ext_resource type="Script" path="res://world/wave_manager.gd" id="4_adcc8"]
 [ext_resource type="PackedScene" uid="uid://bvxaabynny85q" path="res://building/building_placement_manager.tscn" id="4_wjtmy"]
 [ext_resource type="Script" path="res://world/tower.gd" id="4_y1vvv"]
-[ext_resource type="Resource" uid="uid://ql4eepku077d" path="res://building/fire_tower/fire_tower.tres" id="5_5j8n2"]
+[ext_resource type="Resource" uid="uid://ql4eepku077d" path="res://building/building_data/fire_tower.tres" id="5_5j8n2"]
 [ext_resource type="Script" path="res://world/economy_manager.gd" id="5_41gpm"]
-[ext_resource type="Resource" uid="uid://doqbxp82av5h" path="res://building/arrow_tower/arrow_tower.tres" id="6_xs0hh"]
+[ext_resource type="Resource" uid="uid://doqbxp82av5h" path="res://building/building_data/arrow_tower.tres" id="6_xs0hh"]
 [ext_resource type="LabelSettings" uid="uid://m7fmqhjh2d80" path="res://main_menu/options_label.tres" id="8_lbl82"]
 [ext_resource type="Script" path="res://world/game_information.gd" id="8_yplnw"]
 [ext_resource type="Texture2D" uid="uid://cwuh03pnbufwf" path="res://art/sell_icon.png" id="9_mk3p0"]
 [ext_resource type="Texture2D" uid="uid://dcemxwwsv4bqj" path="res://art/frame.png" id="10_4l0ab"]
+[ext_resource type="Script" path="res://world/sell_button.gd" id="10_c56xj"]
 [ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="10_hy4ok"]
 [ext_resource type="Texture2D" uid="uid://cs7kbn330y2wu" path="res://art/next_buttons.png" id="11_oca11"]
-[ext_resource type="PackedScene" path="res://placement_zone.tscn" id="11_pmp1l"]
+[ext_resource type="PackedScene" uid="uid://bhowmgv1gdyyd" path="res://placement_zone.tscn" id="11_pmp1l"]
 [ext_resource type="Script" path="res://enemies/monster_resource/monster_resource.gd" id="14_17cyn"]
 [ext_resource type="Resource" uid="uid://brtfegsaaufxh" path="res://enemies/ghost_resource.tres" id="15_twbn4"]
 [ext_resource type="Resource" uid="uid://d0gohif5v7lkb" path="res://enemies/skeleton_resource.tres" id="16_k6e6k"]
@@ -202,6 +203,7 @@ grow_vertical = 2
 texture_normal = SubResource("AtlasTexture_8dq4j")
 texture_pressed = SubResource("AtlasTexture_ahj10")
 texture_hover = SubResource("AtlasTexture_jffq5")
+script = ExtResource("10_c56xj")
 
 [node name="GameInformation" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
 custom_minimum_size = Vector2(0, 32)
@@ -292,6 +294,7 @@ unique_name_in_owner = true
 script = ExtResource("4_adcc8")
 monster_resources = Array[ExtResource("14_17cyn")]([ExtResource("15_twbn4"), ExtResource("16_k6e6k"), ExtResource("17_trbk2")])
 enemy_path = NodePath("../Path2D")
+growth_rate = 0.6
 
 [node name="EconomyManager" type="Node" parent="."]
 unique_name_in_owner = true

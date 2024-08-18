@@ -16,6 +16,7 @@ func build(building_resource: BuildingResource) -> void:
 	_has_building = true
 	_building_resource = building_resource
 	_building = _building_resource.building_scene.instantiate()
+	_building.base_refund_value = building_resource.base_refund_value
 	add_child(_building)
 	_building.position = Vector2(0, 0)
 

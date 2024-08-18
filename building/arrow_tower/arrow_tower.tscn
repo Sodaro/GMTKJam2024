@@ -19,7 +19,7 @@ y_sort_enabled = true
 texture = SubResource("AtlasTexture_sf47x")
 
 [node name="TowerEnemyDetectorComponent" parent="." instance=ExtResource("1_vxvdb")]
-detection_range = 5
+detection_range = 3
 
 [node name="TowerHealthComponent" parent="." instance=ExtResource("2_7psr7")]
 

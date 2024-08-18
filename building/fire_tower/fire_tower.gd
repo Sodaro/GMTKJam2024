@@ -3,8 +3,8 @@ extends Building
 var enemy_target: BaseEnemy
 @onready var detector: TowerEnemyDetectorComponent = $TowerEnemyDetectorComponent
 
-var _burn_damage: float = 0.3
-var _burn_duration: float = 0.25
+var _burn_damage: float = Constants.FT_BURN_DAMAGE
+var _burn_duration: float = Constants.FT_BURN_DURATION
 
 func get_health_fraction() -> float:
 	return $TowerHealthComponent.get_health_fraction()

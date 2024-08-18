@@ -19,7 +19,8 @@ region = Rect2(48, 16, 16, 16)
 [resource]
 script = ExtResource("1_bn4rm")
 display_name = &"Arrow"
-gold_cost = 2
+gold_cost = 7
+base_refund_value = 3
 building_scene = ExtResource("1_c33va")
 display_texture = SubResource("AtlasTexture_hcx0m")
 hover_texture = SubResource("AtlasTexture_wc366")

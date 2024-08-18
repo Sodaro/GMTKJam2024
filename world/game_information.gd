@@ -11,10 +11,10 @@ func _ready() -> void:
 
 func _on_level_changed(new_level : int) -> void:
 	%LevelLabel.text = str(new_level)
-	
+
 func _on_gold_changed(new_gold : int) -> void:
 	%GoldLabel.text = str(new_gold)
-	
+
 func _on_health_changed(new_health : float) -> void:
 	%LifeLabel.text = str(new_health)
 

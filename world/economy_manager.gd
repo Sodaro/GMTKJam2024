@@ -2,7 +2,7 @@ extends Node
 
 signal on_gold_changed(new_gold : int)
 
-var _current_gold: int = 10
+var _current_gold: int = 50
 
 @onready var _building_placement_manager: BuildingPlacementManager = %BuildingPlacementManager
 @onready var _wave_manager: WaveManager = %WaveManager
@@ -26,7 +26,6 @@ func _on_building_sold(building: Building) -> void:
 
 func _update_gold_display() -> void:
 	on_gold_changed.emit(_current_gold)
-	#%GoldLabel.text = "Gold: " + str(_current_gold)
 
 func _on_enemy_killed(monster_resource: MonsterResource) -> void:
 	_current_gold += monster_resource.gold_value
