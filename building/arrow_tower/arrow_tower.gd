@@ -8,6 +8,9 @@ var arrow_move_timer = 0
 var enemy_position: Vector2
 
 func _process(delta: float) -> void:
+	if enemy_target == null:
+		enemy_target = detector.get_closest_enemy()
+
 	if enemy_target != null:
 		enemy_position = enemy_target.global_position
 
@@ -36,7 +39,6 @@ func _on_tower_enemy_detector_component_enemy_detected(enemy: BaseEnemy) -> void
 	if enemy_target == null:
 		enemy_target = enemy
 		shoot_arrow()
-
 
 func _on_tower_enemy_detector_component_enemy_lost(enemy: BaseEnemy) -> void:
 	if enemy == enemy_target:

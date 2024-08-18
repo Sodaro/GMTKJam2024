@@ -9,6 +9,8 @@ var _current_spawn_interval: float = 0.0
 var _spawn_timer: float = 0.0
 
 var enemy_scene: Resource = load("res://enemies/blob_enemy.tscn")
+@export var monster_resources: Array[MonsterResource]
+
 @export var enemy_path: Path2D
 
 # Enemy growth-related
@@ -48,6 +50,7 @@ func _get_number_of_base_enemies(wave_number: int) -> int:
 func _spawn_enemy():
 	if enemy_scene:
 		var enemy_instance : BaseEnemy = enemy_scene.instantiate()
+		enemy_instance.initialize(monster_resources.pick_random())
 		enemy_instance.reached_castle.connect(_enemy_reached_castle)
 		enemy_path.add_child(enemy_instance)
 	else:

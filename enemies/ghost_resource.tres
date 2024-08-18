@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=5 format=3 uid="uid://d0qbaqndehv5m"]
+
+[ext_resource type="Script" path="res://enemies/monster_resource/monster_resource.gd" id="1_ne6vr"]
+[ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="1_vcr23"]
+[ext_resource type="PackedScene" uid="uid://bli8m2ugwuown" path="res://enemies/blob_enemy.tscn" id="2_8frik"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b7y1"]
+atlas = ExtResource("1_vcr23")
+region = Rect2(64, 8, 8, 8)
+
+[resource]
+script = ExtResource("1_ne6vr")
+display_name = &"Ghost"
+monster_scene = ExtResource("2_8frik")
+display_texture = SubResource("AtlasTexture_8b7y1")
+core_damage = 1.0
+move_speed = 16.0
+max_health = 3.0

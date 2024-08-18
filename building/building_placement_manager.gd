@@ -31,13 +31,16 @@ func _process(_delta: float) -> void:
 	elif Input.is_key_pressed(KEY_3):
 		mode = BuildMode.SELECT
 
-	if hovered_node.is_locked() || mode != BuildMode.BUILD:
+	if hovered_node.is_locked():
 		$PlacementPreview.visible = false
+		return
 
 	if building_data != null && !hovered_node.has_building() && mode == BuildMode.BUILD:
 		$PlacementPreview.visible = true
 		$PlacementPreview.texture = building_data.display_texture
 		$PlacementPreview.global_position = hovered_node.global_position
+	else:
+		$PlacementPreview.visible = false
 
 	_update_node_highlights()
 

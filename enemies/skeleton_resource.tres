@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=5 format=3 uid="uid://h060u60r4cj1"]
+
+[ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="1_3h7mh"]
+[ext_resource type="Script" path="res://enemies/monster_resource/monster_resource.gd" id="1_sb67d"]
+[ext_resource type="PackedScene" uid="uid://bli8m2ugwuown" path="res://enemies/blob_enemy.tscn" id="2_chtje"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xh6g"]
+atlas = ExtResource("1_3h7mh")
+region = Rect2(80, 0, 8, 8)
+
+[resource]
+script = ExtResource("1_sb67d")
+display_name = &"Skeleton"
+monster_scene = ExtResource("2_chtje")
+display_texture = SubResource("AtlasTexture_3xh6g")
+core_damage = 2.0
+move_speed = 8.0
+max_health = 15.0

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bfcl8eal8tjxg"]
+
+[ext_resource type="Script" path="res://enemies/monster_resource/monster_resource.gd" id="1_bhgp5"]
+
+[resource]
+script = ExtResource("1_bhgp5")
