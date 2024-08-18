@@ -32,9 +32,11 @@ func _process(_delta: float) -> void:
 		mode = BuildMode.SELECT
 
 	if hovered_node.is_locked():
+		$PlacementPreview.visible = false
 		return
 
 	if building_data != null && !hovered_node.has_building():
+		$PlacementPreview.visible = true
 		$PlacementPreview.texture = building_data.display_texture
 		$PlacementPreview.global_position = hovered_node.global_position
 
