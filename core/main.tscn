@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqjqwsawekfvr"]
+[gd_scene load_steps=12 format=3 uid="uid://cqjqwsawekfvr"]
 
 [ext_resource type="Script" path="res://core/main.gd" id="1_ybg65"]
 [ext_resource type="PackedScene" uid="uid://cjv3obretvf5x" path="res://world/world.tscn" id="2_jkeox"]
 [ext_resource type="Script" path="res://core/gui.gd" id="3_7g8to"]
 [ext_resource type="PackedScene" uid="uid://bqm4la4b32qcr" path="res://main_menu/main_menu.tscn" id="4_4otnu"]
 [ext_resource type="Script" path="res://core/game_audio_system.gd" id="5_dovqv"]
+[ext_resource type="AudioStream" uid="uid://cwv0ku2y3vxtb" path="res://audio/music/game_2.mp3" id="6_tfkfk"]
 [ext_resource type="AudioStream" uid="uid://caok6j0ghtsvd" path="res://audio/music/menu.mp3" id="6_wcrla"]
+[ext_resource type="AudioStream" uid="uid://fpfn8iue00ay" path="res://audio/music/game.mp3" id="7_ojxbp"]
+[ext_resource type="AudioStream" uid="uid://bjis3xlh017dx" path="res://audio/music/game_3.mp3" id="7_ubxq8"]
+[ext_resource type="AudioStream" uid="uid://hbvpajk4bem0" path="res://audio/music/game_4.mp3" id="8_gq3o0"]
+[ext_resource type="AudioStream" uid="uid://bqp1d6jl2chl5" path="res://audio/music/game_5.mp3" id="9_pvrkm"]
 
 [node name="Main" type="Node"]
 process_mode = 3
@@ -13,7 +18,16 @@ script = ExtResource("1_ybg65")
 
 [node name="World" parent="." instance=ExtResource("2_jkeox")]
 
+[node name="GameAudioSystem" type="Node" parent="."]
+script = ExtResource("5_dovqv")
+menu_song = ExtResource("6_wcrla")
+game_songs = Array[AudioStreamMP3]([ExtResource("7_ojxbp"), ExtResource("6_tfkfk"), ExtResource("7_ubxq8"), ExtResource("8_gq3o0"), ExtResource("9_pvrkm")])
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GameAudioSystem"]
+bus = &"Music"
+
 [node name="GUI" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,10 +38,3 @@ script = ExtResource("3_7g8to")
 
 [node name="MainMenu" parent="GUI" instance=ExtResource("4_4otnu")]
 layout_mode = 1
-
-[node name="GameAudioSystem" type="Node" parent="."]
-script = ExtResource("5_dovqv")
-menu_song = ExtResource("6_wcrla")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GameAudioSystem"]
-bus = &"Music"
