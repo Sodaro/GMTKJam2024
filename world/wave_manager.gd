@@ -39,7 +39,7 @@ func next_wave() -> void:
 	_enemies_to_spawn += _get_number_of_base_enemies(_current_wave_number)
 	_current_spawn_interval = _get_spawn_interval(_enemies_to_spawn, _current_wave_number)
 	on_level_changed.emit(_current_wave_number)
-	
+
 func get_current_wave_number() -> int:
 	return _current_wave_number
 
