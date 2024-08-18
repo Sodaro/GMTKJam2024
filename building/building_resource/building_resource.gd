@@ -9,3 +9,6 @@ class_name BuildingResource
 @export var display_texture: Texture2D
 @export var hover_texture: Texture2D
 @export var pressed_texture: Texture2D
+@export var added_enemy_texture: Texture2D
+@export var added_enemy_resource: MonsterResource
+@export var added_enemy_count: int = 2

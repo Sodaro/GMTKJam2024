@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cjv3obretvf5x"]
+[gd_scene load_steps=35 format=3 uid="uid://cjv3obretvf5x"]
 
 [ext_resource type="Script" path="res://core/game_world.gd" id="1_qy8cf"]
 [ext_resource type="PackedScene" uid="uid://bq1ol3ketb4xf" path="res://level_tiles.tscn" id="2_hsrn2"]
@@ -18,9 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="10_hy4ok"]
 [ext_resource type="Texture2D" uid="uid://cs7kbn330y2wu" path="res://art/next_buttons.png" id="11_oca11"]
 [ext_resource type="PackedScene" uid="uid://bhowmgv1gdyyd" path="res://placement_zone.tscn" id="11_pmp1l"]
-[ext_resource type="Script" path="res://enemies/monster_resource/monster_resource.gd" id="14_17cyn"]
-[ext_resource type="Resource" uid="uid://brtfegsaaufxh" path="res://enemies/ghost_resource.tres" id="15_twbn4"]
-[ext_resource type="Resource" uid="uid://d0gohif5v7lkb" path="res://enemies/skeleton_resource.tres" id="16_k6e6k"]
 [ext_resource type="Resource" uid="uid://bps51wxt61gqf" path="res://enemies/snake_resource.tres" id="17_trbk2"]
 
 [sub_resource type="Curve2D" id="Curve2D_x7any"]
@@ -53,6 +50,22 @@ region = Rect2(64, 40, 8, 8)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2iaor"]
 atlas = ExtResource("10_hy4ok")
 region = Rect2(48, 56, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcj1v"]
+atlas = ExtResource("10_hy4ok")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wo8sx"]
+line_spacing = 0.0
+font_size = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e825t"]
+atlas = ExtResource("10_hy4ok")
+region = Rect2(64, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pvcb"]
+atlas = ExtResource("10_hy4ok")
+region = Rect2(80, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8hjj4"]
 atlas = ExtResource("11_oca11")
@@ -205,17 +218,16 @@ texture_pressed = SubResource("AtlasTexture_ahj10")
 texture_hover = SubResource("AtlasTexture_jffq5")
 script = ExtResource("10_c56xj")
 
-[node name="GameInformation" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
+[node name="GameInformation" type="HBoxContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 8
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 2
+theme_override_constants/separation = 0
 script = ExtResource("8_yplnw")
 
 [node name="HFlowContainer" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
-custom_minimum_size = Vector2(48, 0)
+custom_minimum_size = Vector2(34, 0)
 layout_mode = 2
 size_flags_vertical = 6
 
@@ -235,7 +247,7 @@ text = "999"
 label_settings = ExtResource("8_lbl82")
 
 [node name="HFlowContainer2" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
-custom_minimum_size = Vector2(48, 0)
+custom_minimum_size = Vector2(34, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -255,7 +267,7 @@ text = "999"
 label_settings = ExtResource("8_lbl82")
 
 [node name="HFlowContainer3" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
-custom_minimum_size = Vector2(48, 0)
+custom_minimum_size = Vector2(34, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -273,6 +285,63 @@ layout_mode = 2
 size_flags_vertical = 0
 text = "999"
 label_settings = ExtResource("8_lbl82")
+
+[node name="VFlowContainer" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="SnakeIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_vcj1v")
+
+[node name="SnakeLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "999"
+label_settings = SubResource("LabelSettings_wo8sx")
+justification_flags = 0
+
+[node name="VFlowContainer2" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="GhostIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_e825t")
+stretch_mode = 4
+
+[node name="GhostLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "999"
+label_settings = SubResource("LabelSettings_wo8sx")
+
+[node name="VFlowContainer3" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="SkeletonIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_4pvcb")
+stretch_mode = 4
+
+[node name="SkeletonLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "999"
+label_settings = SubResource("LabelSettings_wo8sx")
 
 [node name="NextWaveButton" type="TextureButton" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
 layout_mode = 2
@@ -292,9 +361,10 @@ texture = ExtResource("10_4l0ab")
 [node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("enemy_path")]
 unique_name_in_owner = true
 script = ExtResource("4_adcc8")
-monster_resources = Array[ExtResource("14_17cyn")]([ExtResource("15_twbn4"), ExtResource("16_k6e6k"), ExtResource("17_trbk2")])
+default_monster = ExtResource("17_trbk2")
 enemy_path = NodePath("../Path2D")
-growth_rate = 0.6
+growth_rate = 0.4
+base_spawn_time = 8.0
 
 [node name="EconomyManager" type="Node" parent="."]
 unique_name_in_owner = true

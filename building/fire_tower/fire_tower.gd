@@ -10,10 +10,15 @@ func get_health_fraction() -> float:
 	return $TowerHealthComponent.get_health_fraction()
 
 func _process(delta: float) -> void:
+	var max_count: int = 3
+	var count = 0
 	for enemy in detector.nearby_enemies:
 		var burnable_comp: MonsterBurnableComponent = enemy.get_component(MonsterBurnableComponent)
 		if burnable_comp != null:
 			burnable_comp.burn(_burn_damage, _burn_duration)
+			count += 1
+			if count == max_count:
+				break
 
 func _on_tower_enemy_detector_component_enemy_detected(enemy: BaseEnemy) -> void:
 	pass # Replace with function body.

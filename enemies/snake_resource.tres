@@ -17,3 +17,5 @@ core_damage = 3.0
 move_speed = 40.0
 max_health = 20.0
 gold_value = 5
+piercing_damage_modifier = 1.0
+fire_damage_modifier = 1.0

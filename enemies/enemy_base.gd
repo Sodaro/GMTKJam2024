@@ -11,6 +11,8 @@ var audio_one_shot_scene: Resource = preload("res://audio/one_shot_audio.tscn")
 signal enemy_killed(monster_resource: MonsterResource)
 signal reached_castle(enemy: BaseEnemy)
 
+enum DamageType {PIERCING, FIRE}
+
 var _registered_components: Dictionary
 
 func register_component(component: Variant):
@@ -35,10 +37,16 @@ func _process(delta: float) -> void:
 		reached_castle.emit(self)
 		queue_free()
 
-func take_damage(amount: float) -> void:
+func take_damage(amount: float, type: DamageType) -> void:
 	if health <= 0:
 		return
-	health -= amount
+	var actual_amount: float = amount
+	match (type):
+		DamageType.PIERCING:
+			actual_amount *= _monster_resource.piercing_damage_modifier
+		DamageType.FIRE:
+			actual_amount *= _monster_resource.fire_damage_modifier
+	health -= actual_amount
 	$HealthBar.value = health
 	if health <= 0:
 		enemy_killed.emit(_monster_resource)

@@ -11,7 +11,7 @@ func _ready():
 	$GUI/MainMenu.play_button_pressed.connect(_on_play_button_pressed)
 	$GUI/MainMenu.resume_button_pressed.connect(_toggle_menu)
 	_update_window_resolution()
-	
+
 func _process(delta: float) -> void:
 	if game_mode == GameMode.GAME && Input.is_action_just_pressed("menu_action"):
 		_toggle_menu()

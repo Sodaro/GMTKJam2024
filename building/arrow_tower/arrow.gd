@@ -29,5 +29,5 @@ func _process(delta: float) -> void:
 	look_at(_enemy_pos)
 	if _move_timer >= _move_duration:
 		if _enemy_target != null:
-			_enemy_target.take_damage(_damage)
+			_enemy_target.take_damage(_damage, BaseEnemy.DamageType.PIERCING)
 		queue_free()

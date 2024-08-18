@@ -4,6 +4,5 @@
 [ext_resource type="Script" path="res://building/arrow_tower/arrow.gd" id="2_08wgy"]
 
 [node name="Arrow" type="Sprite2D"]
-z_index = 4096
 texture = ExtResource("1_vt3ar")
 script = ExtResource("2_08wgy")

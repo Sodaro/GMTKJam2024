@@ -23,7 +23,7 @@ func shoot_arrow(enemy: BaseEnemy) -> void:
 	var additional_dist_duration: float = remap(dist, 0.0, 100.0, 0.0, 0.5)
 	var move_duration = _default_arrow_move_duration + additional_dist_duration
 	var arrow = Arrow.new(_arrow_texture, global_position, enemy, _arrow_damage, move_duration)
-	get_tree().get_root().add_child(arrow)
+	Globals.WORLD.add_child(arrow)
 	_shoot_cd_timer = _shoot_cd
 
 func _on_tower_enemy_detector_component_enemy_detected(enemy: BaseEnemy) -> void:

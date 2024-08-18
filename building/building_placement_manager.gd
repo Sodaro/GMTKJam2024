@@ -3,9 +3,10 @@ extends Node2D
 class_name BuildingPlacementManager
 
 @onready var _building_grid: BuildingGrid = $BuildingGrid
+@onready var WORLD: Node = get_parent()
 
 signal building_purchased(building_data: BuildingResource)
-signal building_sold(building: Building)
+signal building_sold(building_data: BuildingResource)
 
 var hovered_node: GridNode
 var previous_node: GridNode
@@ -68,7 +69,7 @@ func _process(_delta: float) -> void:
 			pass
 		BuildMode.SELL:
 			if hovered_node.has_building():
-				building_sold.emit(hovered_node.get_building())
+				building_sold.emit(hovered_node.get_building_data())
 				hovered_node.remove_building()
 				$SellTowerAudioPlayer.play()
 			pass

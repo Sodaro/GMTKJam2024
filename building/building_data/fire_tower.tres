@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="BuildingResource" load_steps=7 format=3 uid="uid://ql4eepku077d"]
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=8 format=3 uid="uid://ql4eepku077d"]
 
+[ext_resource type="Resource" uid="uid://d0gohif5v7lkb" path="res://enemies/skeleton_resource.tres" id="1_j0qsu"]
 [ext_resource type="PackedScene" uid="uid://b86e2of4eyeon" path="res://building/fire_tower/fire_tower.tscn" id="1_vieur"]
 [ext_resource type="Texture2D" uid="uid://bw2nwubqsxga0" path="res://art/towers.png" id="2_1re2a"]
 [ext_resource type="Script" path="res://building/building_resource/building_resource.gd" id="2_5phnr"]
@@ -25,3 +26,5 @@ building_scene = ExtResource("1_vieur")
 display_texture = SubResource("AtlasTexture_1avcc")
 hover_texture = SubResource("AtlasTexture_uogyy")
 pressed_texture = SubResource("AtlasTexture_5o4j6")
+added_enemy_resource = ExtResource("1_j0qsu")
+added_enemy_count = 1

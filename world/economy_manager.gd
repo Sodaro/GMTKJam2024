@@ -20,8 +20,8 @@ func _on_building_purchased(building_data: BuildingResource) -> void:
 	_current_gold -= building_data.gold_cost
 	_update_gold_display()
 
-func _on_building_sold(building: Building) -> void:
-	_current_gold += building.get_sell_value()
+func _on_building_sold(building_resource: BuildingResource) -> void:
+	_current_gold += building_resource.base_refund_value
 	_update_gold_display()
 
 func _update_gold_display() -> void:
