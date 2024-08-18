@@ -19,3 +19,6 @@ bus = &"SFX"
 stream = ExtResource("3_xsxqn")
 max_polyphony = 5
 bus = &"SFX"
+
+[node name="PlacementPreview" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0.270588, 1, 0.858824)

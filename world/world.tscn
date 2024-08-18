@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bd4l3wvk4kbit" path="res://art/next_button.png" id="9_gnism"]
 [ext_resource type="Texture2D" uid="uid://dcemxwwsv4bqj" path="res://art/frame.png" id="10_4l0ab"]
 [ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="10_hy4ok"]
-[ext_resource type="PackedScene" path="res://placement_zone.tscn" id="11_pmp1l"]
+[ext_resource type="PackedScene" uid="uid://bhowmgv1gdyyd" path="res://placement_zone.tscn" id="11_pmp1l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lwuke"]
 texture = ExtResource("10_hy4ok")

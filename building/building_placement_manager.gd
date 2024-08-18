@@ -34,6 +34,10 @@ func _process(_delta: float) -> void:
 	if hovered_node.is_locked():
 		return
 
+	if building_data != null && !hovered_node.has_building():
+		$PlacementPreview.texture = building_data.display_texture
+		$PlacementPreview.global_position = hovered_node.global_position
+
 	if !Input.is_action_pressed("primary_action"):
 		return
 
