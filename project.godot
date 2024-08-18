@@ -32,6 +32,10 @@ window/size/viewport_height=240
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[gui]
+
+common/snap_controls_to_pixels=false
+
 [input]
 
 primary_action={

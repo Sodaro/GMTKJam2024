@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MonsterResource" load_steps=5 format=3 uid="uid://d0qbaqndehv5m"]
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=5 format=3 uid="uid://brtfegsaaufxh"]
 
 [ext_resource type="Script" path="res://enemies/monster_resource/monster_resource.gd" id="1_ne6vr"]
 [ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="1_vcr23"]

@@ -39,6 +39,9 @@ func next_wave() -> void:
 	_enemies_to_spawn += _get_number_of_base_enemies(_current_wave_number)
 	_current_spawn_interval = _get_spawn_interval(_enemies_to_spawn, _current_wave_number)
 	on_level_changed.emit(_current_wave_number)
+	
+func get_current_wave_number() -> int:
+	return _current_wave_number
 
 func _get_spawn_interval(enemies_count: int, wave_number: int) -> float:
 	var wave_spawn_time: float = base_spawn_time + (wave_number * spawn_time_scaling_factor)
@@ -74,11 +77,9 @@ func _enemy_reached_castle(enemy : BaseEnemy) -> void:
 
 func _ready() -> void:
 	restart()
-	next_wave()
 
 func _process(delta: float) -> void:
 	_try_spawn_enemies(delta)
 
-
-func _on_next_wave_button_button_down() -> void:
+func _on_next_wave_button_button_up() -> void:
 	next_wave()

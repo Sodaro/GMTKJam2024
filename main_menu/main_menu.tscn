@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqm4la4b32qcr"]
+[gd_scene load_steps=9 format=3 uid="uid://bqm4la4b32qcr"]
 
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_ecrke"]
+[ext_resource type="Texture2D" uid="uid://bxh7byj6cdg7l" path="res://art/small-dots-parallax.png" id="2_14qvl"]
 [ext_resource type="PackedScene" uid="uid://bshacrjb6jm2d" path="res://main_menu/options_panel.tscn" id="2_wxgqc"]
+[ext_resource type="Texture2D" uid="uid://cbpfal218f4lo" path="res://art/medium-dots-parallax.png" id="3_ewp34"]
+[ext_resource type="Texture2D" uid="uid://b08xm60oarndn" path="res://art/large-dots-parallax.png" id="4_g4ng6"]
+[ext_resource type="Texture2D" uid="uid://cf1jl076qjqhe" path="res://art/game_logo.png" id="6_giv56"]
 
 [sub_resource type="Gradient" id="Gradient_30k2h"]
 interpolation_mode = 2
@@ -14,13 +18,6 @@ height = 240
 fill_from = Vector2(1, 1)
 fill_to = Vector2(0.451923, 0.521368)
 
-[sub_resource type="Theme" id="Theme_7vlh5"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_xsjhj"]
-font_size = 32
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
-
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -30,7 +27,68 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ecrke")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.156863, 0.247059, 1)
+
+[node name="Parallax2D" type="Parallax2D" parent="ColorRect"]
+repeat_size = Vector2(640, 480)
+autoscroll = Vector2(22, 16)
+limit_begin = Vector2(-100000, -100000)
+limit_end = Vector2(100000, 100000)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/Parallax2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_14qvl")
+metadata/_edit_use_anchors_ = true
+
+[node name="Parallax2D2" type="Parallax2D" parent="ColorRect"]
+repeat_size = Vector2(640, 480)
+autoscroll = Vector2(28, 20)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/Parallax2D2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ewp34")
+
+[node name="Parallax2D3" type="Parallax2D" parent="ColorRect"]
+repeat_size = Vector2(640, 480)
+autoscroll = Vector2(32, 22)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/Parallax2D3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_g4ng6")
+
 [node name="BackgroundImage" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,41 +97,34 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_7147d")
 
-[node name="TitleLabel" type="Label" parent="."]
-layout_mode = 2
-offset_left = 95.5
-offset_right = 224.5
-offset_bottom = 23.0
-grow_horizontal = 2
-theme = SubResource("Theme_7vlh5")
-text = "Placeholder Title"
-label_settings = SubResource("LabelSettings_xsjhj")
-
-[node name="MainButtonContainer" type="VBoxContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -33.0
-offset_right = 70.0
-offset_bottom = 33.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MainButtonContainer" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_constants/separation = 8
 
-[node name="PlayButton" type="Button" parent="MainButtonContainer"]
+[node name="PlayButton" type="Button" parent="CenterContainer/MainButtonContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../ExitButton")
 focus_neighbor_bottom = NodePath("../OptionsButton")
 text = "Play"
 
-[node name="OptionsButton" type="Button" parent="MainButtonContainer"]
+[node name="OptionsButton" type="Button" parent="CenterContainer/MainButtonContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../PlayButton")
 focus_neighbor_bottom = NodePath("../ExitButton")
 text = "Options"
 
-[node name="ExitButton" type="Button" parent="MainButtonContainer"]
+[node name="ExitButton" type="Button" parent="CenterContainer/MainButtonContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../OptionsButton")
 focus_neighbor_bottom = NodePath(".")
@@ -82,7 +133,25 @@ text = "Exit"
 [node name="OptionsPanel" parent="." instance=ExtResource("2_wxgqc")]
 layout_mode = 1
 
-[connection signal="pressed" from="MainButtonContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MainButtonContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MainButtonContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[node name="LogoContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -96.0
+offset_right = 96.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 24
+
+[node name="Logo" type="TextureRect" parent="LogoContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_giv56")
+
+[connection signal="pressed" from="CenterContainer/MainButtonContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtonContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtonContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="back_button_pressed" from="OptionsPanel" to="." method="_on_options_panel_back_button_pressed"]

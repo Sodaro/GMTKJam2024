@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://cjv3obretvf5x"]
+[gd_scene load_steps=30 format=4 uid="uid://cjv3obretvf5x"]
 
 [ext_resource type="Script" path="res://core/game_world.gd" id="1_qy8cf"]
 [ext_resource type="Texture2D" uid="uid://bg37qivtheagw" path="res://art/ui_border/border/panel-border-000.png" id="3_7ddcm"]
@@ -11,14 +11,14 @@
 [ext_resource type="Resource" uid="uid://doqbxp82av5h" path="res://building/arrow_tower/arrow_tower.tres" id="6_xs0hh"]
 [ext_resource type="LabelSettings" uid="uid://m7fmqhjh2d80" path="res://main_menu/options_label.tres" id="8_lbl82"]
 [ext_resource type="Script" path="res://world/game_information.gd" id="8_yplnw"]
-[ext_resource type="Texture2D" uid="uid://bd4l3wvk4kbit" path="res://art/next_button.png" id="9_gnism"]
 [ext_resource type="Texture2D" uid="uid://dcemxwwsv4bqj" path="res://art/frame.png" id="10_4l0ab"]
 [ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="10_hy4ok"]
-[ext_resource type="PackedScene" uid="uid://bhowmgv1gdyyd" path="res://placement_zone.tscn" id="11_pmp1l"]
-[ext_resource type="Script" path="res://enemies/monster_resource/monster_resource.gd" id="14_u8tnj"]
-[ext_resource type="Resource" uid="uid://d0qbaqndehv5m" path="res://enemies/ghost_resource.tres" id="15_txjbt"]
-[ext_resource type="Resource" uid="uid://h060u60r4cj1" path="res://enemies/skeleton_resource.tres" id="16_cfgk3"]
-[ext_resource type="Resource" uid="uid://lwa0bdye3fic" path="res://enemies/snake_resource.tres" id="17_xj4ih"]
+[ext_resource type="Texture2D" uid="uid://cs7kbn330y2wu" path="res://art/next_buttons.png" id="11_oca11"]
+[ext_resource type="PackedScene" path="res://placement_zone.tscn" id="11_pmp1l"]
+[ext_resource type="Script" path="res://enemies/monster_resource/monster_resource.gd" id="14_17cyn"]
+[ext_resource type="Resource" uid="uid://brtfegsaaufxh" path="res://enemies/ghost_resource.tres" id="15_twbn4"]
+[ext_resource type="Resource" uid="uid://d0gohif5v7lkb" path="res://enemies/skeleton_resource.tres" id="16_k6e6k"]
+[ext_resource type="Resource" uid="uid://bps51wxt61gqf" path="res://enemies/snake_resource.tres" id="17_trbk2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lwuke"]
 texture = ExtResource("10_hy4ok")
@@ -206,6 +206,21 @@ region = Rect2(64, 40, 8, 8)
 atlas = ExtResource("10_hy4ok")
 region = Rect2(48, 56, 8, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hjj4"]
+atlas = ExtResource("11_oca11")
+region = Rect2(0, 0, 56, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm026"]
+atlas = ExtResource("11_oca11")
+region = Rect2(0, 48, 56, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3nd1"]
+atlas = SubResource("AtlasTexture_tm026")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjoey"]
+atlas = ExtResource("11_oca11")
+region = Rect2(0, 24, 56, 24)
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_qy8cf")
 
@@ -240,13 +255,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Control"]
-
-[node name="CastleCoreHealthLabel" type="Label" parent="Control/CanvasLayer"]
-unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 23.0
-text = "10
-"
 
 [node name="ColorRect" type="ColorRect" parent="Control/CanvasLayer"]
 custom_minimum_size = Vector2(64, 37)
@@ -357,8 +365,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "20
-"
+text = "999"
 label_settings = ExtResource("8_lbl82")
 
 [node name="HFlowContainer2" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
@@ -378,8 +385,7 @@ stretch_mode = 4
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-text = "20
-"
+text = "999"
 label_settings = ExtResource("8_lbl82")
 
 [node name="HFlowContainer3" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
@@ -399,14 +405,15 @@ stretch_mode = 4
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-text = "20
-"
+text = "999"
 label_settings = ExtResource("8_lbl82")
 
 [node name="NextWaveButton" type="TextureButton" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-texture_normal = ExtResource("9_gnism")
+texture_normal = SubResource("AtlasTexture_8hjj4")
+texture_pressed = SubResource("AtlasTexture_c3nd1")
+texture_hover = SubResource("AtlasTexture_wjoey")
 
 [node name="TextureRect" type="TextureRect" parent="Control/CanvasLayer/ColorRect"]
 layout_mode = 1
@@ -419,17 +426,25 @@ texture = ExtResource("10_4l0ab")
 [node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("enemy_path")]
 unique_name_in_owner = true
 script = ExtResource("4_adcc8")
-monster_resources = Array[ExtResource("14_u8tnj")]([ExtResource("15_txjbt"), ExtResource("16_cfgk3"), ExtResource("17_xj4ih")])
+monster_resources = Array[ExtResource("14_17cyn")]([ExtResource("15_twbn4"), ExtResource("16_k6e6k"), ExtResource("17_trbk2")])
 enemy_path = NodePath("../Path2D")
 
 [node name="EconomyManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("5_41gpm")
+monster_resources = null
+start_enemies = null
+growth_rate = null
+difficulty_modifier = null
+randomness_factor = null
+max_spawn_time = null
+base_spawn_time = null
+spawn_time_scaling_factor = null
 
 [node name="PlacementZone" parent="." instance=ExtResource("11_pmp1l")]
 position = Vector2(288, 40)
-width_tiles = 8
-height_tiles = 5
+width_tiles = 5
+height_tiles = 8
 
 [node name="PlacementZone2" parent="." instance=ExtResource("11_pmp1l")]
 position = Vector2(204, 88)
@@ -437,4 +452,4 @@ width_tiles = 9
 height_tiles = 20
 
 [connection signal="health_changed" from="CastleCore" to="." method="_on_castle_core_health_changed"]
-[connection signal="button_down" from="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/NextWaveButton" to="WaveManager" method="_on_next_wave_button_button_down"]
+[connection signal="button_up" from="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/NextWaveButton" to="WaveManager" method="_on_next_wave_button_button_up"]

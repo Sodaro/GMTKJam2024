@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MonsterResource" load_steps=5 format=3 uid="uid://lwa0bdye3fic"]
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=5 format=3 uid="uid://bps51wxt61gqf"]
 
 [ext_resource type="Script" path="res://enemies/monster_resource/monster_resource.gd" id="1_1bocw"]
 [ext_resource type="PackedScene" uid="uid://bli8m2ugwuown" path="res://enemies/blob_enemy.tscn" id="1_b051e"]

@@ -1,26 +1,41 @@
-[gd_scene load_steps=13 format=3 uid="uid://be3f18s7u8jc"]
+[gd_scene load_steps=17 format=3 uid="uid://be3f18s7u8jc"]
 
-[ext_resource type="Texture2D" uid="uid://bg37qivtheagw" path="res://art/ui_border/border/panel-border-000.png" id="1_i1o0d"]
-[ext_resource type="Script" path="res://world/tower.gd" id="2_nunes"]
-[ext_resource type="Resource" uid="uid://ql4eepku077d" path="res://building/fire_tower/fire_tower.tres" id="3_e8ux6"]
-[ext_resource type="Resource" uid="uid://doqbxp82av5h" path="res://building/arrow_tower/arrow_tower.tres" id="4_herdj"]
-[ext_resource type="Script" path="res://world/game_information.gd" id="5_2ynfw"]
-[ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="6_27d4s"]
-[ext_resource type="LabelSettings" uid="uid://m7fmqhjh2d80" path="res://main_menu/options_label.tres" id="7_jylyr"]
-[ext_resource type="Texture2D" uid="uid://bd4l3wvk4kbit" path="res://art/next_button.png" id="8_7tj1y"]
-[ext_resource type="Texture2D" uid="uid://dcemxwwsv4bqj" path="res://art/frame.png" id="9_stuqm"]
+[ext_resource type="Texture2D" uid="uid://bg37qivtheagw" path="res://art/ui_border/border/panel-border-000.png" id="1_wwmgl"]
+[ext_resource type="Script" path="res://world/tower.gd" id="2_av5lw"]
+[ext_resource type="Resource" uid="uid://ql4eepku077d" path="res://building/fire_tower/fire_tower.tres" id="3_pduh5"]
+[ext_resource type="Resource" uid="uid://doqbxp82av5h" path="res://building/arrow_tower/arrow_tower.tres" id="4_ma4d1"]
+[ext_resource type="Script" path="res://world/game_information.gd" id="5_capaf"]
+[ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="6_phk0f"]
+[ext_resource type="LabelSettings" uid="uid://m7fmqhjh2d80" path="res://main_menu/options_label.tres" id="7_aw85y"]
+[ext_resource type="Texture2D" uid="uid://cs7kbn330y2wu" path="res://art/next_buttons.png" id="8_66feh"]
+[ext_resource type="Texture2D" uid="uid://dcemxwwsv4bqj" path="res://art/frame.png" id="9_mmfcb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tw3gx"]
-atlas = ExtResource("6_27d4s")
+atlas = ExtResource("6_phk0f")
 region = Rect2(48, 48, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k62bq"]
-atlas = ExtResource("6_27d4s")
+atlas = ExtResource("6_phk0f")
 region = Rect2(64, 40, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2iaor"]
-atlas = ExtResource("6_27d4s")
+atlas = ExtResource("6_phk0f")
 region = Rect2(48, 56, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hjj4"]
+atlas = ExtResource("8_66feh")
+region = Rect2(0, 0, 56, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm026"]
+atlas = ExtResource("8_66feh")
+region = Rect2(0, 48, 56, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3nd1"]
+atlas = SubResource("AtlasTexture_tm026")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjoey"]
+atlas = ExtResource("8_66feh")
+region = Rect2(0, 24, 56, 24)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -31,13 +46,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="CastleCoreHealthLabel" type="Label" parent="CanvasLayer"]
-unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 23.0
-text = "10
-"
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 custom_minimum_size = Vector2(64, 37)
@@ -80,7 +88,7 @@ size_flags_vertical = 4
 [node name="ButtonBorder" type="TextureRect" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/MarginContainer/TowerActionBar"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("1_i1o0d")
+texture = ExtResource("1_wwmgl")
 
 [node name="FireTowerButton" type="TextureButton" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/MarginContainer/TowerActionBar/ButtonBorder"]
 z_index = 100
@@ -97,12 +105,12 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-script = ExtResource("2_nunes")
-tower_resource = ExtResource("3_e8ux6")
+script = ExtResource("2_av5lw")
+tower_resource = ExtResource("3_pduh5")
 
 [node name="ButtonBorder2" type="TextureRect" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/MarginContainer/TowerActionBar"]
 layout_mode = 2
-texture = ExtResource("1_i1o0d")
+texture = ExtResource("1_wwmgl")
 
 [node name="ArrowTowerButton" type="TextureButton" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/MarginContainer/TowerActionBar/ButtonBorder2"]
 z_index = 100
@@ -119,8 +127,8 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-script = ExtResource("2_nunes")
-tower_resource = ExtResource("4_herdj")
+script = ExtResource("2_av5lw")
+tower_resource = ExtResource("4_ma4d1")
 
 [node name="GameInformation" type="VFlowContainer" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
 custom_minimum_size = Vector2(0, 32)
@@ -129,7 +137,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 8
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 2
-script = ExtResource("5_2ynfw")
+script = ExtResource("5_capaf")
 
 [node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
 custom_minimum_size = Vector2(48, 0)
@@ -148,9 +156,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "20
-"
-label_settings = ExtResource("7_jylyr")
+text = "999"
+label_settings = ExtResource("7_aw85y")
 
 [node name="HFlowContainer2" type="HFlowContainer" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
 custom_minimum_size = Vector2(48, 0)
@@ -169,9 +176,8 @@ stretch_mode = 4
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-text = "20
-"
-label_settings = ExtResource("7_jylyr")
+text = "999"
+label_settings = ExtResource("7_aw85y")
 
 [node name="HFlowContainer3" type="HFlowContainer" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
 custom_minimum_size = Vector2(48, 0)
@@ -190,14 +196,15 @@ stretch_mode = 4
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-text = "20
-"
-label_settings = ExtResource("7_jylyr")
+text = "999"
+label_settings = ExtResource("7_aw85y")
 
 [node name="NextWaveButton" type="TextureButton" parent="CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-texture_normal = ExtResource("8_7tj1y")
+texture_normal = SubResource("AtlasTexture_8hjj4")
+texture_pressed = SubResource("AtlasTexture_c3nd1")
+texture_hover = SubResource("AtlasTexture_wjoey")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect"]
 layout_mode = 1
@@ -205,4 +212,4 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 5.0
 grow_horizontal = 2
-texture = ExtResource("9_stuqm")
+texture = ExtResource("9_mmfcb")
