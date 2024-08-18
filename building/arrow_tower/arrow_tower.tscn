@@ -12,6 +12,7 @@ region = Rect2(0, 16, 16, 16)
 
 [node name="ArrowTower" type="Node2D"]
 script = ExtResource("1_w82hm")
+_arrow_texture = ExtResource("5_nlpxu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -21,10 +22,6 @@ texture = SubResource("AtlasTexture_sf47x")
 detection_range = 5
 
 [node name="TowerHealthComponent" parent="." instance=ExtResource("2_7psr7")]
-
-[node name="Arrow" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("5_nlpxu")
 
 [connection signal="enemy_detected" from="TowerEnemyDetectorComponent" to="." method="_on_tower_enemy_detector_component_enemy_detected"]
 [connection signal="enemy_lost" from="TowerEnemyDetectorComponent" to="." method="_on_tower_enemy_detector_component_enemy_lost"]

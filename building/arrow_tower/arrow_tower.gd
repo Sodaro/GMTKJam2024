@@ -3,42 +3,28 @@ extends Building
 var enemy_target: BaseEnemy
 @onready var detector: TowerEnemyDetectorComponent = $TowerEnemyDetectorComponent
 
-var arrow_move_duration = 0.5
-var arrow_move_timer = 0
-var enemy_position: Vector2
+var _shoot_cd = 0.75
+var _shoot_cd_timer = 0
+var _default_arrow_move_duration = 0.5
+@export var _arrow_texture: Texture2D
 
 func _process(delta: float) -> void:
-	if enemy_target == null:
-		enemy_target = detector.get_closest_enemy()
+	_shoot_cd_timer -= delta
+	if _shoot_cd_timer <= 0.0 && detector.get_closest_enemy() != null:
+		shoot_arrow(detector.get_closest_enemy())
 
-	if enemy_target != null:
-		enemy_position = enemy_target.global_position
-
-	arrow_move_timer += delta
-	var pos = lerp(global_position, enemy_position, arrow_move_timer / arrow_move_duration)
-	$Arrow.global_position = pos
-	$Arrow.look_at(enemy_position)
-	if arrow_move_timer >= arrow_move_duration:
-		if enemy_target != null:
-			enemy_target.take_damage(0.5)
-			shoot_arrow()
-		else:
-			stop_shooting()
-
-
-func shoot_arrow() -> void:
-	$Arrow.visible = true
-	$Arrow.global_position = Vector2.ZERO
-	arrow_move_timer = 0
-
-func stop_shooting() -> void:
-	$Arrow.visible = false
-	$Arrow.global_position = Vector2.ZERO
+func shoot_arrow(enemy: BaseEnemy) -> void:
+	var dist: float = enemy.global_position.distance_to(global_position)
+	var additional_dist_duration: float = remap(dist, 0.0, 100.0, 0.0, 0.5)
+	var move_duration = _default_arrow_move_duration + additional_dist_duration
+	var arrow = Arrow.new(_arrow_texture, global_position, enemy, move_duration)
+	get_tree().get_root().add_child(arrow)
+	_shoot_cd_timer = _shoot_cd
 
 func _on_tower_enemy_detector_component_enemy_detected(enemy: BaseEnemy) -> void:
 	if enemy_target == null:
 		enemy_target = enemy
-		shoot_arrow()
+		shoot_arrow(enemy)
 
 func _on_tower_enemy_detector_component_enemy_lost(enemy: BaseEnemy) -> void:
 	if enemy == enemy_target:

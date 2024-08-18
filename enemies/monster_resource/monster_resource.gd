@@ -8,3 +8,4 @@ class_name MonsterResource
 @export var core_damage: float
 @export var move_speed: float
 @export var max_health: float
+@export var gold_value: int

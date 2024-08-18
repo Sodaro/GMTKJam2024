@@ -8,8 +8,8 @@ var health: float = 10.0
 @export var death_sfx: AudioStream
 var audio_one_shot_scene: Resource = preload("res://audio/one_shot_audio.tscn")
 
+signal enemy_killed(monster_resource: MonsterResource)
 signal reached_castle(enemy: BaseEnemy)
-# Called when the node enters the scene tree for the first time.
 
 func initialize(in_monster_resource: MonsterResource):
 	_monster_resource = in_monster_resource
@@ -24,9 +24,12 @@ func _process(delta: float) -> void:
 		queue_free()
 
 func take_damage(amount: float) -> void:
+	if health <= 0:
+		return
 	health -= amount
 	$HealthBar.value = health
 	if health <= 0:
+		enemy_killed.emit(_monster_resource)
 		var audio_one_shot: OneShotAudio = audio_one_shot_scene.instantiate()
 		get_tree().get_root().add_child(audio_one_shot)
 		audio_one_shot.play_sound(death_sfx)

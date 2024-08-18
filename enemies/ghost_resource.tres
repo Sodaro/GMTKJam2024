@@ -16,3 +16,4 @@ display_texture = SubResource("AtlasTexture_8b7y1")
 core_damage = 1.0
 move_speed = 16.0
 max_health = 3.0
+gold_value = 5

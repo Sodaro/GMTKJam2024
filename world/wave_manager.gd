@@ -1,7 +1,10 @@
 extends Node
 
+class_name WaveManager
+
 signal on_enemy_castle_reached(enemy : BaseEnemy)
 signal on_level_changed(new_level : int)
+signal on_enemy_spawned(enemy: BaseEnemy)
 
 var _current_wave_number: int = 0
 var _enemies_to_spawn: int = 0
@@ -53,6 +56,7 @@ func _spawn_enemy():
 		enemy_instance.initialize(monster_resources.pick_random())
 		enemy_instance.reached_castle.connect(_enemy_reached_castle)
 		enemy_path.add_child(enemy_instance)
+		on_enemy_spawned.emit(enemy_instance)
 	else:
 		print("Enemy scene is not assigned!")
 
