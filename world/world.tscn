@@ -1,7 +1,7 @@
 [gd_scene load_steps=29 format=3 uid="uid://cjv3obretvf5x"]
 
 [ext_resource type="Script" path="res://core/game_world.gd" id="1_qy8cf"]
-[ext_resource type="PackedScene" uid="uid://cufslgj8befyc" path="res://level_tiles.tscn" id="2_hsrn2"]
+[ext_resource type="PackedScene" uid="uid://bq1ol3ketb4xf" path="res://level_tiles.tscn" id="2_hsrn2"]
 [ext_resource type="Texture2D" uid="uid://bg37qivtheagw" path="res://art/ui_border/border/panel-border-000.png" id="3_7ddcm"]
 [ext_resource type="PackedScene" uid="uid://cnjye1fb541he" path="res://castle/castle_core.tscn" id="3_g7xh2"]
 [ext_resource type="Script" path="res://world/wave_manager.gd" id="4_adcc8"]
@@ -15,17 +15,18 @@
 [ext_resource type="Texture2D" uid="uid://dcemxwwsv4bqj" path="res://art/frame.png" id="10_4l0ab"]
 [ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="10_hy4ok"]
 [ext_resource type="Texture2D" uid="uid://cs7kbn330y2wu" path="res://art/next_buttons.png" id="11_oca11"]
-[ext_resource type="PackedScene" uid="uid://bhowmgv1gdyyd" path="res://placement_zone.tscn" id="11_pmp1l"]
+[ext_resource type="PackedScene" path="res://placement_zone.tscn" id="11_pmp1l"]
 [ext_resource type="Script" path="res://enemies/monster_resource/monster_resource.gd" id="14_17cyn"]
 [ext_resource type="Resource" uid="uid://brtfegsaaufxh" path="res://enemies/ghost_resource.tres" id="15_twbn4"]
 [ext_resource type="Resource" uid="uid://d0gohif5v7lkb" path="res://enemies/skeleton_resource.tres" id="16_k6e6k"]
 [ext_resource type="Resource" uid="uid://bps51wxt61gqf" path="res://enemies/snake_resource.tres" id="17_trbk2"]
 
 [sub_resource type="Curve2D" id="Curve2D_x7any"]
+bake_interval = 100.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 55, 20, 0, 0, 0, 0, 55, 148)
+"points": PackedVector2Array(0, 0, 0, 0, 128, 212, 0, 0, 0, 0, 28, 212, 0, 0, 0, 0, 28, 124, 0, 0, 0, 0, -48, 124, 0, 0, 0, 0, -48, 162, 0, 0, 0, 0, -26, 163, 0, 0, 0, 0, -26, 212, 0, 0, 0, 0, -96, 212, 0, 0, 0, 0, -96, 148, 0, 0, 0, 0, -129, 148, 0, 0, 0, 0, -129, 75)
 }
-point_count = 2
+point_count = 11
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tw3gx"]
 atlas = ExtResource("10_hy4ok")
@@ -62,7 +63,7 @@ metadata/_edit_lock_ = true
 
 [node name="BuildingPlacementManager" parent="." node_paths=PackedStringArray("allowed_placement_zones") instance=ExtResource("4_wjtmy")]
 unique_name_in_owner = true
-allowed_placement_zones = [null, NodePath("../PlacementZone2")]
+allowed_placement_zones = [NodePath("../PlacementZone3"), NodePath("../PlacementZone2"), NodePath("../PlacementZone4"), NodePath("../PlacementZone5"), NodePath("../PlacementZone6"), NodePath("../PlacementZone7"), NodePath("../PlacementZone8"), NodePath("../PlacementZone9"), NodePath("../PlacementZone10"), NodePath("../PlacementZone11"), NodePath("../PlacementZone12"), NodePath("../PlacementZone13"), NodePath("../PlacementZone14"), NodePath("../PlacementZone15"), NodePath("../PlacementZone16")]
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(201, -20)
@@ -259,10 +260,79 @@ enemy_path = NodePath("../Path2D")
 unique_name_in_owner = true
 script = ExtResource("5_41gpm")
 
+[node name="PlacementZone3" parent="." instance=ExtResource("11_pmp1l")]
+position = Vector2(140, 168)
+width_tiles = 6
+height_tiles = 4
+
 [node name="PlacementZone2" parent="." instance=ExtResource("11_pmp1l")]
-position = Vector2(188, 124)
-width_tiles = 9
-height_tiles = 20
+position = Vector2(192, 124)
+width_tiles = 7
+height_tiles = 3
+
+[node name="PlacementZone4" parent="." instance=ExtResource("11_pmp1l")]
+position = Vector2(198, 83)
+width_tiles = 10
+height_tiles = 3
+
+[node name="PlacementZone5" parent="." instance=ExtResource("11_pmp1l")]
+position = Vector2(97, 97)
+width_tiles = 3
+height_tiles = 4
+
+[node name="PlacementZone6" parent="." instance=ExtResource("11_pmp1l")]
+position = Vector2(76, 165)
+height_tiles = 8
+
+[node name="PlacementZone7" parent="." instance=ExtResource("11_pmp1l")]
+position = Vector2(120, 126)
+width_tiles = 1
+height_tiles = 7
+
+[node name="PlacementZone8" parent="." instance=ExtResource("11_pmp1l")]
+position = Vector2(93, 74)
+width_tiles = 2
+height_tiles = 2
+
+[node name="PlacementZone9" parent="." instance=ExtResource("11_pmp1l")]
+position = Vector2(55, 98)
+width_tiles = 2
+height_tiles = 7
+
+[node name="PlacementZone11" parent="." instance=ExtResource("11_pmp1l")]
+position = Vector2(132, 148)
+width_tiles = 2
+height_tiles = 1
+
+[node name="PlacementZone10" parent="." instance=ExtResource("11_pmp1l")]
+position = Vector2(113, 105)
+width_tiles = 1
+height_tiles = 2
+
+[node name="PlacementZone12" parent="." instance=ExtResource("11_pmp1l")]
+position = Vector2(254, 155)
+width_tiles = 2
+height_tiles = 6
+
+[node name="PlacementZone13" parent="." instance=ExtResource("11_pmp1l")]
+position = Vector2(216, 160)
+width_tiles = 1
+height_tiles = 6
+
+[node name="PlacementZone14" parent="." instance=ExtResource("11_pmp1l")]
+position = Vector2(193, 159)
+width_tiles = 1
+height_tiles = 6
+
+[node name="PlacementZone15" parent="." instance=ExtResource("11_pmp1l")]
+position = Vector2(154, 91)
+width_tiles = 1
+height_tiles = 1
+
+[node name="PlacementZone16" parent="." instance=ExtResource("11_pmp1l")]
+position = Vector2(205, 144)
+width_tiles = 2
+height_tiles = 2
 
 [connection signal="health_changed" from="CastleCore" to="." method="_on_castle_core_health_changed"]
 [connection signal="button_up" from="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/NextWaveButton" to="WaveManager" method="_on_next_wave_button_button_up"]
