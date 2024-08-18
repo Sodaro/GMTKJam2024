@@ -42,6 +42,12 @@ func lock() -> void:
 func clear_lock() -> void:
 	_is_locked = false
 
+func hide_node() -> void:
+	$Sprite2D.visible = false
+
+func show_node() -> void:
+	$Sprite2D.visible = true
+
 func show_highlight(mode: BuildingPlacementManager.BuildMode) -> void:
 	if mode == BuildingPlacementManager.BuildMode.SELL && has_building():
 		modulate = Color.GOLD

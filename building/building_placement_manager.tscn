@@ -21,4 +21,5 @@ max_polyphony = 5
 bus = &"SFX"
 
 [node name="PlacementPreview" type="Sprite2D" parent="."]
+visible = false
 self_modulate = Color(0, 0.270588, 1, 0.858824)

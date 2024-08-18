@@ -3,9 +3,10 @@ extends Building
 var enemy_target: BaseEnemy
 @onready var detector: TowerEnemyDetectorComponent = $TowerEnemyDetectorComponent
 
-var _shoot_cd = 0.75
-var _shoot_cd_timer = 0
-var _default_arrow_move_duration = 0.5
+var _shoot_cd: float = 0.75
+var _shoot_cd_timer: float = 0
+var _default_arrow_move_duration: float = 0.5
+var _enemy_target: BaseEnemy
 @export var _arrow_texture: Texture2D
 
 func _process(delta: float) -> void:

@@ -13,7 +13,6 @@ region = Rect2(0, 0, 16, 16)
 script = ExtResource("1_eb5r8")
 
 [node name="TowerEnemyDetectorComponent" parent="." instance=ExtResource("3_5pwqk")]
-detection_range = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_0pum0")

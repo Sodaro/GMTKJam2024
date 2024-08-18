@@ -12,6 +12,7 @@ var y_offset: int = 0
 var node_size: int = 8
 
 var grid_nodes: Array[GridNode]
+var valid_grid_nodes: Array[GridNode]
 
 func generate_grid(allowed_placement_zones: Array[PlacementZone]) -> void:
 	grid_nodes.resize(rows * cols)
@@ -31,10 +32,16 @@ func generate_grid(allowed_placement_zones: Array[PlacementZone]) -> void:
 				break
 		if is_locked:
 			instance.lock()
-			instance.clear_highlight()
+		else:
+			valid_grid_nodes.push_back(instance)
 
+func show_grid() -> void:
+	for grid_node in valid_grid_nodes:
+		grid_node.show_node()
 
-
+func hide_grid() -> void:
+	for grid_node in valid_grid_nodes:
+		grid_node.hide_node()
 
 func get_grid_node_at_mouse() -> GridNode:
 	var mouse_pos: Vector2 = get_global_mouse_position()

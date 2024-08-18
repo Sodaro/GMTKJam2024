@@ -10,9 +10,9 @@ signal building_sold(building: Building)
 var hovered_node: GridNode
 var previous_node: GridNode
 
-enum BuildMode {BUILD, SELL, SELECT}
+enum BuildMode {NONE, BUILD, SELL}
 
-var mode: BuildMode = BuildMode.BUILD
+var mode: BuildMode = BuildMode.NONE
 
 @export var allowed_placement_zones: Array[PlacementZone]
 @export var building_data: BuildingResource
@@ -20,16 +20,28 @@ var mode: BuildMode = BuildMode.BUILD
 func _ready() -> void:
 	$BuildingGrid.generate_grid(allowed_placement_zones)
 
+func enable_build_mode() -> void:
+	mode = BuildMode.BUILD
+	_building_grid.show_grid()
+
+func enable_sell_mode() -> void:
+	mode = BuildMode.SELL
+	_building_grid.hide_grid()
+
+func exit_current_mode() -> void:
+	mode = BuildMode.NONE
+	_building_grid.hide_grid()
+
 func _process(_delta: float) -> void:
 	previous_node = hovered_node
 	hovered_node = _building_grid.get_grid_node_at_mouse()
 	_update_node_highlights()
 	if Input.is_key_pressed(KEY_1):
-		mode = BuildMode.BUILD
+		enable_build_mode()
 	elif Input.is_key_pressed(KEY_2):
-		mode = BuildMode.SELL
+		enable_sell_mode()
 	elif Input.is_key_pressed(KEY_3):
-		mode = BuildMode.SELECT
+		exit_current_mode()
 
 	if hovered_node.is_locked():
 		$PlacementPreview.visible = false
@@ -48,7 +60,7 @@ func _process(_delta: float) -> void:
 		return
 
 	match mode:
-		BuildMode.SELECT:
+		BuildMode.NONE:
 			pass
 		BuildMode.BUILD:
 			if !hovered_node.has_building() && %EconomyManager.can_purchase_building(building_data):
@@ -63,8 +75,6 @@ func _process(_delta: float) -> void:
 				hovered_node.remove_building()
 				$SellTowerAudioPlayer.play()
 			pass
-
-
 
 func _update_node_highlights() -> void:
 	if previous_node != null && previous_node != hovered_node:

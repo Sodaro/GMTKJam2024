@@ -11,10 +11,22 @@ var audio_one_shot_scene: Resource = preload("res://audio/one_shot_audio.tscn")
 signal enemy_killed(monster_resource: MonsterResource)
 signal reached_castle(enemy: BaseEnemy)
 
+var _registered_components: Dictionary
+
+func register_component(component: Variant):
+	_registered_components[typeof(component)] = component
+#
+func get_component(component: Variant):
+	var type = typeof(component)
+	if _registered_components.has(type):
+		return _registered_components[type]
+	return null
+
 func initialize(in_monster_resource: MonsterResource):
 	_monster_resource = in_monster_resource
 	$Sprite2D.texture = _monster_resource.display_texture
 	health = _monster_resource.max_health
+	$HealthBar.max_value = health
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

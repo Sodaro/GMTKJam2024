@@ -15,5 +15,5 @@ monster_scene = ExtResource("1_b051e")
 display_texture = SubResource("AtlasTexture_k8gii")
 core_damage = 3.0
 move_speed = 32.0
-max_health = 2.0
+max_health = 20.0
 gold_value = 2

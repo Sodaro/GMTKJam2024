@@ -3,12 +3,17 @@ extends Building
 var enemy_target: BaseEnemy
 @onready var detector: TowerEnemyDetectorComponent = $TowerEnemyDetectorComponent
 
+var _burn_damage: float = 0.3
+var _burn_duration: float = 0.25
+
 func get_health_fraction() -> float:
 	return $TowerHealthComponent.get_health_fraction()
 
 func _process(delta: float) -> void:
 	for enemy in detector.nearby_enemies:
-		enemy.take_damage(delta)
+		var burnable_comp: MonsterBurnableComponent = enemy.get_component(MonsterBurnableComponent)
+		if burnable_comp != null:
+			burnable_comp.burn(_burn_damage, _burn_duration)
 
 func _on_tower_enemy_detector_component_enemy_detected(enemy: BaseEnemy) -> void:
 	pass # Replace with function body.

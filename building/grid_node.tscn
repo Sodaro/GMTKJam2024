@@ -8,4 +8,5 @@ script = ExtResource("1_8g1pd")
 _locked_color = Color(0.677893, 0.000267029, 0.655883, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_slstv")

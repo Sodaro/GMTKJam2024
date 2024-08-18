@@ -12,8 +12,7 @@ var cached_closest_enemy: BaseEnemy
 var get_closest_last_tick: int
 
 func _ready() -> void:
-	process_mode = PROCESS_MODE_ALWAYS
-	$CollisionShape2D.shape.size = Vector2(16 + detection_range * 32, 16 + detection_range * 32)
+	$CollisionShape2D.shape.size = Vector2(16 + detection_range * 16, 16 + detection_range * 16)
 
 func get_closest_enemy() -> BaseEnemy:
 	if Time.get_ticks_msec() == get_closest_last_tick:
