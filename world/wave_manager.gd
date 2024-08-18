@@ -5,16 +5,20 @@ class_name WaveManager
 signal on_enemy_castle_reached(enemy : BaseEnemy)
 signal on_level_changed(new_level : int)
 signal on_enemy_spawned(enemy: BaseEnemy)
+signal on_level_finished()
+signal on_max_level_reached()
 
 var _current_wave_number: int = 0
 var _enemies_to_spawn: int = 0
 var _current_spawn_interval: float = 0.0
 var _spawn_timer: float = 0.0
+var _max_level_reached: bool = false
+var _level_finished: bool = false
 
 var enemy_scene: Resource = load("res://enemies/blob_enemy.tscn")
 @export var monster_resources: Array[MonsterResource]
-
 @export var enemy_path: Path2D
+@export var max_level: int = 12
 
 # Enemy growth-related
 @export var start_enemies: int = 5
@@ -34,6 +38,11 @@ func restart() -> void:
 	_spawn_timer = 0
 
 func next_wave() -> void:
+	if _current_wave_number >= max_level && !_max_level_reached:
+		_max_level_reached = true
+		on_max_level_reached.emit()
+		return
+
 	_current_wave_number += 1
 	_spawn_timer = 0
 	_enemies_to_spawn += _get_number_of_base_enemies(_current_wave_number)
@@ -64,6 +73,11 @@ func _spawn_enemy():
 		print("Enemy scene is not assigned!")
 
 func _try_spawn_enemies(delta: float) -> void:
+	if _has_finished() && !_level_finished:
+		_level_finished = true
+		on_level_finished.emit()
+		return
+
 	if _enemies_to_spawn > 0:
 		_spawn_timer += delta
 
@@ -74,6 +88,9 @@ func _try_spawn_enemies(delta: float) -> void:
 
 func _enemy_reached_castle(enemy : BaseEnemy) -> void:
 	on_enemy_castle_reached.emit(enemy)
+
+func _has_finished() -> bool:
+	return _enemies_to_spawn <= 0 && _current_wave_number >= max_level
 
 func _ready() -> void:
 	restart()
