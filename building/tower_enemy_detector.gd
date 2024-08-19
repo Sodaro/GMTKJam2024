@@ -16,8 +16,8 @@ func _ready() -> void:
 	$CollisionShape2D.shape = RectangleShape2D.new()
 	$CollisionShape2D.shape.size = Vector2(16 + detection_range * 16, 16 + detection_range * 16)
 
-func _draw() -> void:
-	draw_rect($CollisionShape2D.shape.get_rect(), _draw_color, true)
+#func _draw() -> void:
+	#draw_rect($CollisionShape2D.shape.get_rect(), _draw_color, true)
 
 func get_closest_enemy() -> BaseEnemy:
 	if Time.get_ticks_msec() == get_closest_last_tick:
@@ -53,10 +53,12 @@ func _on_area_shape_exited(_area_rid: RID, area: Area2D, _area_shape_index: int,
 		nearby_enemies.remove_at(nearby_enemies.find(enemy))
 
 func _on_mouse_shape_entered(shape_idx: int) -> void:
-	_draw_color = Color.BLUE
-	_draw_color.a = 0.1
-	queue_redraw()
+	pass
+	#_draw_color = Color.BLUE
+	#_draw_color.a = 0.1
+	#queue_redraw()
 
 func _on_mouse_shape_exited(shape_idx: int) -> void:
-	_draw_color = Color.TRANSPARENT
-	queue_redraw()
+	pass
+	#_draw_color = Color.TRANSPARENT
+	#queue_redraw()

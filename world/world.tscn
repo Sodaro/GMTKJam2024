@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://world/sell_button.gd" id="10_c56xj"]
 [ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="10_hy4ok"]
 [ext_resource type="Texture2D" uid="uid://cs7kbn330y2wu" path="res://art/next_buttons.png" id="11_oca11"]
-[ext_resource type="PackedScene" path="res://placement_zone.tscn" id="11_pmp1l"]
+[ext_resource type="PackedScene" uid="uid://bhowmgv1gdyyd" path="res://placement_zone.tscn" id="11_pmp1l"]
 [ext_resource type="Resource" uid="uid://bps51wxt61gqf" path="res://enemies/snake_resource.tres" id="17_trbk2"]
 
 [sub_resource type="Curve2D" id="Curve2D_x7any"]
@@ -365,6 +365,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 
 [node name="NextWaveButton" type="TextureButton" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/PanelContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4

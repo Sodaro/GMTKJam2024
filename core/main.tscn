@@ -41,4 +41,5 @@ script = ExtResource("3_7g8to")
 layout_mode = 1
 
 [node name="WinLoseDisplay" parent="GUI" instance=ExtResource("12_db55o")]
+visible = false
 layout_mode = 1

@@ -3,16 +3,11 @@ extends Node
 class_name WaveManager
 
 signal on_enemy_castle_reached(enemy : BaseEnemy)
-signal on_level_changed(new_level : int)
+signal on_level_changed(wave_data: WaveData)
 signal on_enemy_spawned(enemy: BaseEnemy)
 signal on_level_finished(max_level : int)
 signal on_max_level_reached()
 
-var _current_wave_number: int = 0
-var _enemies_to_spawn: int = 0
-var _special_enemies_to_spawn: int = 0
-var _base_enemies_to_spawn: int = 0
-var _current_spawn_interval: float = 0.0
 var _spawn_timer: float = 0.0
 var _max_level_reached: bool = false
 var _level_finished: bool = false
@@ -40,11 +35,11 @@ var current_monster_resource: MonsterResource
 @export var spawn_time_scaling_factor: float = 0.1
 
 class WaveData:
-	var current_wave_number: int = 0
+	var wave_number: int = 0
 	var enemies_to_spawn: int = 0
 	var special_enemies_to_spawn: int = 0
 	var base_enemies_to_spawn: int = 0
-	var current_spawn_interval: float = 0.0
+	var spawn_interval: float = 0.0
 	var wave_special_monsters: Dictionary
 
 var next_wave_data: WaveData
@@ -54,14 +49,9 @@ func get_next_wave_data() -> WaveData:
 	return next_wave_data
 
 func restart() -> void:
-	_current_wave_number = 0
-	_enemies_to_spawn = 0
-	_current_spawn_interval = 0
+	current_wave_data = WaveData.new()
 	_spawn_timer = 0
-	_special_enemies_to_spawn = 0
-	_base_enemies_to_spawn = 0
 
-	#wave_special_monsters.clear()
 	added_monster_resources.clear()
 	current_monster_resource = default_monster
 	_generate_next_wave()
@@ -70,33 +60,33 @@ func _generate_next_wave() -> void:
 	if _max_level_reached:
 		return
 	next_wave_data = WaveData.new()
-	var wave_nr: int = _current_wave_number + 1
-	next_wave_data.current_wave_number = wave_nr
+	var wave_nr: int = current_wave_data.wave_number + 1
+	next_wave_data.wave_number = wave_nr
 	next_wave_data.special_enemies_to_spawn = _get_number_of_special_enemies(wave_nr)
 	next_wave_data.base_enemies_to_spawn = _get_number_of_base_enemies(wave_nr)
 	next_wave_data.enemies_to_spawn += next_wave_data.base_enemies_to_spawn + next_wave_data.special_enemies_to_spawn
-	next_wave_data.current_spawn_interval = _get_spawn_interval(next_wave_data.enemies_to_spawn, wave_nr)
+	next_wave_data.spawn_interval = _get_spawn_interval(next_wave_data.enemies_to_spawn, wave_nr)
 
 func next_wave() -> void:
 	if _max_level_reached:
 		return
 
-	if _current_wave_number >= max_level && !_max_level_reached:
+	if current_wave_data.wave_number >= max_level && !_max_level_reached:
 		_max_level_reached = true
+		on_level_changed.emit(current_wave_data)
 		on_max_level_reached.emit()
 		return
 
 	_spawn_timer = 0
-	_current_wave_number = next_wave_data.current_wave_number
-	_special_enemies_to_spawn = next_wave_data.special_enemies_to_spawn
-	_base_enemies_to_spawn = next_wave_data.base_enemies_to_spawn
-	_enemies_to_spawn = next_wave_data.enemies_to_spawn
-	_current_spawn_interval = next_wave_data.current_spawn_interval
+	current_wave_data = next_wave_data
+	current_wave_data.wave_number = next_wave_data.wave_number
 	wave_special_monsters = next_wave_data.wave_special_monsters
-	on_level_changed.emit(_current_wave_number)
+	on_level_changed.emit(current_wave_data)
 
 func get_current_wave_number() -> int:
-	return _current_wave_number
+	if current_wave_data == null:
+		return 0
+	return current_wave_data.wave_number
 
 func _get_spawn_interval(enemies_count: int, wave_number: int) -> float:
 	var wave_spawn_time: float = base_spawn_time + (wave_number * spawn_time_scaling_factor)
@@ -136,10 +126,10 @@ func _try_spawn_enemies(delta: float) -> void:
 		on_level_finished.emit(max_level)
 		return
 
-	if _enemies_to_spawn > 0:
+	if current_wave_data.enemies_to_spawn > 0:
 		_spawn_timer += delta
-		if _spawn_timer >= _current_spawn_interval:
-			if _enemies_to_spawn <= _special_enemies_to_spawn:
+		if _spawn_timer >= current_wave_data.spawn_interval:
+			if current_wave_data.enemies_to_spawn <= current_wave_data.special_enemies_to_spawn:
 				if wave_special_monsters.size() > 0:
 					for resource in wave_special_monsters:
 						if wave_special_monsters[resource] > 0:
@@ -150,14 +140,14 @@ func _try_spawn_enemies(delta: float) -> void:
 				current_monster_resource = default_monster
 
 			_spawn_enemy()
-			_enemies_to_spawn -= 1
+			current_wave_data.enemies_to_spawn -= 1
 			_spawn_timer = 0.0
 
 func _enemy_reached_castle(enemy : BaseEnemy) -> void:
 	on_enemy_castle_reached.emit(enemy)
 
 func _has_finished() -> bool:
-	return _enemies_to_spawn <= 0 && _current_wave_number >= max_level
+	return current_wave_data.enemies_to_spawn <= 0 && current_wave_data.wave_number >= max_level
 
 func _ready() -> void:
 	restart()
@@ -170,7 +160,7 @@ func _on_building_purchased(building_resource: BuildingResource):
 	if !added_monster_resources.has(monster_resource):
 		var data: Dictionary
 		data.count = 0
-		data.first_wave = _current_wave_number + 2
+		data.first_wave = current_wave_data.wave_number + 2
 		added_monster_resources[monster_resource] = data
 	added_monster_resources[building_resource.added_enemy_resource].count += monster_count
 

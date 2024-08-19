@@ -13,11 +13,11 @@ func _play_menu_audio() -> void:
 	$AudioStreamPlayer2D.autoplay = true
 	$AudioStreamPlayer2D.bus = "Music"
 	$AudioStreamPlayer2D.play()
-	
+
 func _start_game_audio() -> void:
 	if game_songs.is_empty():
 		return
-		
+
 	_play_random_game_song()
 	$AudioStreamPlayer2D.finished.connect(_play_random_game_song)
 

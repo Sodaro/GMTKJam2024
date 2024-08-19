@@ -15,8 +15,8 @@ func _ready() -> void:
 	%SkeletonLabel.text = "0"
 	%GhostLabel.text = "0"
 
-func _on_level_changed(new_level : int) -> void:
-	%LevelLabel.text = str(new_level)
+func _on_level_changed(wave_data: WaveManager.WaveData) -> void:
+	%LevelLabel.text = str(wave_data.wave_number)
 	%SnakeLabel.text = str(%WaveManager.next_wave_data.base_enemies_to_spawn)
 
 func _on_gold_changed(new_gold : int) -> void:

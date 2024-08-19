@@ -8,8 +8,9 @@ func _ready():
 	game_mode = GameMode.MENU
 	$World.get_node("Control/CanvasLayer").visible = false
 	$World.process_mode = Node.PROCESS_MODE_DISABLED
-	$World.get_node("World/WaveManager").on_level_finished.connect(_display_end_screen_win)
+	#$World.get_node("World/WaveManager").on_level_finished.connect(_display_end_screen_win)
 	$GUI/MainMenu.play_button_pressed.connect(_on_play_button_pressed)
+	$GUI/WinLoseDisplay.on_play_again_pressed.connect(_on_play_button_pressed)
 	$GUI/MainMenu.resume_button_pressed.connect(_display_game)
 	$GUI/WinLoseDisplay.on_play_again_pressed.connect(_restart_game)
 	_update_window_resolution()
@@ -46,7 +47,7 @@ func _display_game() -> void:
 	$GUI/MainMenu/CenterContainer/MainButtonContainer/PlayButton.visible = false
 	$GUI.visible = false
 	game_mode = GameMode.GAME
-	
+
 func _display_menu() -> void:
 	$World.get_node("Control/CanvasLayer").visible = false
 	$World.process_mode = Node.PROCESS_MODE_DISABLED
@@ -59,13 +60,7 @@ func _display_end_screen_win() -> void:
 
 func _on_play_button_pressed() -> void:
 	_display_game()
-	
+
 func _restart_game() -> void:
 	_display_game()
 	$World/WaveManager.restart()
-
-func _on_world_world_started(time: Variant, gold: Variant, cool: Variant) -> void:
-	print(time)
-	print(gold)
-	print(cool)
-	pass # Replace with function body.

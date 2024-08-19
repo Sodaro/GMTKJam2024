@@ -27,7 +27,7 @@ func _deactivate_menu_node(node:Node) -> void:
 
 func _on_exit_button_pressed():
 	get_tree().quit()
-	
+
 func get_state() -> MenuState:
 	return _state
 
