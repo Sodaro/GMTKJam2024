@@ -9,18 +9,19 @@ func _ready():
 	$World.get_node("Control/CanvasLayer").visible = false
 	$World.process_mode = Node.PROCESS_MODE_DISABLED
 	$GUI/MainMenu.play_button_pressed.connect(_on_play_button_pressed)
-	$GUI/MainMenu.resume_button_pressed.connect(_toggle_menu)
+	$GUI/MainMenu.resume_button_pressed.connect(_display_game)
 	_update_window_resolution()
 
 func _process(delta: float) -> void:
-	if game_mode == GameMode.GAME && Input.is_action_just_pressed("menu_action"):
-		_toggle_menu()
-
-func _toggle_menu() -> void:
-		get_tree().paused = !get_tree().paused
-		$GUI.visible = get_tree().paused
-		$World.get_node("Control/CanvasLayer").visible = !get_tree().paused
-		$GUI.process_mode = Node.PROCESS_MODE_ALWAYS
+	if Input.is_action_just_pressed("menu_action"):
+		if game_mode == GameMode.MENU:
+			var main_menu = $GUI/MainMenu
+			if main_menu.get_state() != main_menu.MenuState.MAIN_MENU:
+				$GUI/MainMenu.go_to_menu()
+			else:
+				_display_game()
+		else:
+			_display_menu()
 
 func _update_window_resolution():
 	var width:int = SettingsManager.get_value("window_width")
@@ -35,8 +36,7 @@ func _update_window_resolution():
 	else:
 		window.mode = Window.MODE_MAXIMIZED
 
-
-func _on_play_button_pressed():
+func _display_game() -> void:
 	$World.get_node("Control/CanvasLayer").visible = true
 	$World.process_mode = Node.PROCESS_MODE_PAUSABLE
 	$GUI.process_mode = Node.PROCESS_MODE_DISABLED
@@ -44,6 +44,16 @@ func _on_play_button_pressed():
 	$GUI/MainMenu/CenterContainer/MainButtonContainer/PlayButton.visible = false
 	$GUI.visible = false
 	game_mode = GameMode.GAME
+	
+func _display_menu() -> void:
+	$World.get_node("Control/CanvasLayer").visible = false
+	$World.process_mode = Node.PROCESS_MODE_DISABLED
+	$GUI.process_mode = Node.PROCESS_MODE_ALWAYS
+	$GUI.visible = true
+	game_mode = GameMode.MENU
+
+func _on_play_button_pressed():
+	_display_game()
 
 func _on_world_world_started(time: Variant, gold: Variant, cool: Variant) -> void:
 	print(time)

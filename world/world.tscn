@@ -137,6 +137,7 @@ theme_override_constants/margin_bottom = 0
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
+custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 4
@@ -219,17 +220,17 @@ texture_hover = SubResource("AtlasTexture_jffq5")
 script = ExtResource("10_c56xj")
 
 [node name="GameInformation" type="HBoxContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
-custom_minimum_size = Vector2(88, 32)
+custom_minimum_size = Vector2(96, 32)
 layout_mode = 2
 size_flags_horizontal = 10
-size_flags_stretch_ratio = 2.0
 theme_override_constants/separation = 0
 script = ExtResource("8_yplnw")
 
 [node name="VFlowContainer4" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
 custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+size_flags_vertical = 4
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = -2
 
@@ -295,71 +296,78 @@ label_settings = SubResource("LabelSettings_wo8sx")
 justification_flags = 0
 
 [node name="VFlowContainer5" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation"]
+custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = -2
 
-[node name="VFlowContainer" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5"]
-custom_minimum_size = Vector2(0, 24)
+[node name="HFlowContainer" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 6
+size_flags_vertical = 0
 
-[node name="SnakeIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/VFlowContainer"]
+[node name="SnakeIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/HFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 4
 texture = SubResource("AtlasTexture_vcj1v")
 
-[node name="SnakeLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/VFlowContainer"]
+[node name="SnakeLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/HFlowContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 2
 text = "999"
 label_settings = SubResource("LabelSettings_wo8sx")
 justification_flags = 0
 
-[node name="VFlowContainer2" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5"]
-custom_minimum_size = Vector2(0, 24)
+[node name="HFlowContainer2" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 6
+size_flags_vertical = 0
 
-[node name="GhostIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/VFlowContainer2"]
+[node name="GhostIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/HFlowContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 4
 texture = SubResource("AtlasTexture_e825t")
 stretch_mode = 4
 
-[node name="GhostLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/VFlowContainer2"]
+[node name="GhostLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/HFlowContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "999"
 label_settings = SubResource("LabelSettings_wo8sx")
 
-[node name="VFlowContainer3" type="VFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5"]
-custom_minimum_size = Vector2(0, 24)
+[node name="HFlowContainer3" type="HFlowContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 6
+size_flags_vertical = 0
 
-[node name="SkeletonIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/VFlowContainer3"]
+[node name="SkeletonIcon" type="TextureRect" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/HFlowContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 4
 texture = SubResource("AtlasTexture_4pvcb")
 stretch_mode = 4
 
-[node name="SkeletonLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/VFlowContainer3"]
+[node name="SkeletonLabel" type="Label" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/GameInformation/VFlowContainer5/HFlowContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "999"
 label_settings = SubResource("LabelSettings_wo8sx")
 
-[node name="NextWaveButton" type="TextureButton" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="NextWaveButton" type="TextureButton" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
-size_flags_stretch_ratio = 4.0
 texture_normal = SubResource("AtlasTexture_8hjj4")
 texture_pressed = SubResource("AtlasTexture_c3nd1")
 texture_hover = SubResource("AtlasTexture_wjoey")
@@ -459,4 +467,4 @@ width_tiles = 2
 height_tiles = 2
 
 [connection signal="health_changed" from="CastleCore" to="." method="_on_castle_core_health_changed"]
-[connection signal="button_up" from="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/NextWaveButton" to="WaveManager" method="_on_next_wave_button_button_up"]
+[connection signal="button_up" from="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/PanelContainer/NextWaveButton" to="WaveManager" method="_on_next_wave_button_button_up"]
