@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://world/sell_button.gd" id="10_c56xj"]
 [ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="10_hy4ok"]
 [ext_resource type="Texture2D" uid="uid://cs7kbn330y2wu" path="res://art/next_buttons.png" id="11_oca11"]
-[ext_resource type="PackedScene" uid="uid://bhowmgv1gdyyd" path="res://placement_zone.tscn" id="11_pmp1l"]
+[ext_resource type="PackedScene" path="res://placement_zone.tscn" id="11_pmp1l"]
 [ext_resource type="Resource" uid="uid://bps51wxt61gqf" path="res://enemies/snake_resource.tres" id="17_trbk2"]
 
 [sub_resource type="Curve2D" id="Curve2D_x7any"]
@@ -358,13 +358,11 @@ layout_mode = 2
 text = "999"
 label_settings = SubResource("LabelSettings_wo8sx")
 
-[node name="PanelContainer" type="PanelContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer"]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
 
-[node name="NextWaveButton" type="TextureButton" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/PanelContainer"]
+[node name="NextWaveButton" type="TextureButton" parent="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/BoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -468,4 +466,4 @@ width_tiles = 2
 height_tiles = 2
 
 [connection signal="health_changed" from="CastleCore" to="." method="_on_castle_core_health_changed"]
-[connection signal="button_up" from="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/PanelContainer/NextWaveButton" to="WaveManager" method="_on_next_wave_button_button_up"]
+[connection signal="button_up" from="Control/CanvasLayer/ColorRect/MarginContainer/HFlowContainer/BoxContainer/NextWaveButton" to="WaveManager" method="_on_next_wave_button_button_up"]
