@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://enemies/enemy_base.gd" id="1_a1h84"]
 [ext_resource type="AudioStream" uid="uid://dfsegxtopaep8" path="res://audio/sfx/Enemy killed coin.wav" id="2_tjtvt"]
 [ext_resource type="Texture2D" uid="uid://bal2bsldq058g" path="res://art/colored_tilemap_packed.png" id="3_dccv4"]
-[ext_resource type="PackedScene" path="res://enemies/MonsterBurnableComponent.tscn" id="4_b43nw"]
+[ext_resource type="PackedScene" uid="uid://dl6wxrolbrnu6" path="res://enemies/MonsterBurnableComponent.tscn" id="4_b43nw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ck8xn"]
 atlas = ExtResource("3_dccv4")
@@ -17,10 +17,10 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qqrgq"]
 bg_color = Color(0.359177, 0.699587, 0, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 
 [node name="Blob Enemy" type="PathFollow2D"]
@@ -31,6 +31,7 @@ script = ExtResource("1_a1h84")
 death_sfx = ExtResource("2_tjtvt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 texture = SubResource("AtlasTexture_ck8xn")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -39,15 +40,16 @@ texture = SubResource("AtlasTexture_ck8xn")
 shape = SubResource("RectangleShape2D_7vtge")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+y_sort_enabled = true
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -16.0
-offset_right = 8.0
-offset_bottom = -10.0
+offset_left = -5.0
+offset_top = -9.0
+offset_right = 5.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_0ytla")

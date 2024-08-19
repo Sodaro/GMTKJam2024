@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqjqwsawekfvr"]
+[gd_scene load_steps=17 format=3 uid="uid://cqjqwsawekfvr"]
 
 [ext_resource type="Script" path="res://core/main.gd" id="1_ybg65"]
-[ext_resource type="PackedScene" uid="uid://cjv3obretvf5x" path="res://world/world.tscn" id="2_jkeox"]
 [ext_resource type="Script" path="res://core/gui.gd" id="3_7g8to"]
 [ext_resource type="PackedScene" uid="uid://bqm4la4b32qcr" path="res://main_menu/main_menu.tscn" id="4_4otnu"]
 [ext_resource type="Script" path="res://core/game_audio_system.gd" id="5_dovqv"]
@@ -11,13 +10,19 @@
 [ext_resource type="AudioStream" uid="uid://bjis3xlh017dx" path="res://audio/music/game_3.mp3" id="7_ubxq8"]
 [ext_resource type="AudioStream" uid="uid://hbvpajk4bem0" path="res://audio/music/game_4.mp3" id="8_gq3o0"]
 [ext_resource type="AudioStream" uid="uid://bqp1d6jl2chl5" path="res://audio/music/game_5.mp3" id="9_pvrkm"]
-[ext_resource type="PackedScene" uid="uid://b01kulrku0q3v" path="res://win_lose_display.tscn" id="12_db55o"]
+[ext_resource type="Script" path="res://win_lose_display.gd" id="12_khkve"]
+[ext_resource type="Texture2D" uid="uid://cf1jl076qjqhe" path="res://art/game_logo.png" id="13_s3xnd"]
+[ext_resource type="Texture2D" uid="uid://p0278imthaxc" path="res://art/game_over.png" id="14_uv44f"]
+[ext_resource type="Texture2D" uid="uid://bnvqnds1uenma" path="res://art/victory.png" id="15_5q7bw"]
+[ext_resource type="Texture2D" uid="uid://ckb8lkm6hd8gv" path="res://art/defeat.png" id="16_hw5yq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yvn5q"]
+line_spacing = 0.0
+font_size = 12
 
 [node name="Main" type="Node"]
 process_mode = 3
 script = ExtResource("1_ybg65")
-
-[node name="World" parent="." instance=ExtResource("2_jkeox")]
 
 [node name="GameAudioSystem" type="Node" parent="."]
 script = ExtResource("5_dovqv")
@@ -29,6 +34,7 @@ bus = &"Music"
 
 [node name="GUI" type="Control" parent="."]
 unique_name_in_owner = true
+z_index = 4096
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,6 +46,118 @@ script = ExtResource("3_7g8to")
 [node name="MainMenu" parent="GUI" instance=ExtResource("4_4otnu")]
 layout_mode = 1
 
-[node name="WinLoseDisplay" parent="GUI" instance=ExtResource("12_db55o")]
+[node name="WinLoseDisplay" type="Control" parent="GUI"]
 visible = false
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("12_khkve")
+
+[node name="ColorRect" type="ColorRect" parent="GUI/WinLoseDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.137255, 0.137255, 1)
+
+[node name="VFlowContainer" type="VFlowContainer" parent="GUI/WinLoseDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="GUI/WinLoseDisplay/VFlowContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/WinLoseDisplay/VFlowContainer/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 24
+
+[node name="TextureRect" type="TextureRect" parent="GUI/WinLoseDisplay/VFlowContainer/CenterContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("13_s3xnd")
+
+[node name="MarginContainer2" type="MarginContainer" parent="GUI/WinLoseDisplay/VFlowContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 16
+
+[node name="VFlowContainer" type="VFlowContainer" parent="GUI/WinLoseDisplay/VFlowContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="GameOver" type="TextureRect" parent="GUI/WinLoseDisplay/VFlowContainer/MarginContainer2/VFlowContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("14_uv44f")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/WinLoseDisplay/VFlowContainer/MarginContainer2/VFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = -2
+
+[node name="VictoryDisplay" type="TextureRect" parent="GUI/WinLoseDisplay/VFlowContainer/MarginContainer2/VFlowContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("15_5q7bw")
+
+[node name="DefeatDisplay" type="TextureRect" parent="GUI/WinLoseDisplay/VFlowContainer/MarginContainer2/VFlowContainer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("16_hw5yq")
+
+[node name="SurvivedLevelsLabel" type="Label" parent="GUI/WinLoseDisplay/VFlowContainer/MarginContainer2/VFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Survived 8/12 Levels"
+label_settings = SubResource("LabelSettings_yvn5q")
+justification_flags = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="GUI/WinLoseDisplay/VFlowContainer/MarginContainer2/VFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="MainButtonContainer" type="VBoxContainer" parent="GUI/WinLoseDisplay/VFlowContainer/MarginContainer2/VFlowContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+
+[node name="PlayButton" type="Button" parent="GUI/WinLoseDisplay/VFlowContainer/MarginContainer2/VFlowContainer/MarginContainer2/MainButtonContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ExitButton")
+text = "Play Again"
+
+[node name="ExitButton" type="Button" parent="GUI/WinLoseDisplay/VFlowContainer/MarginContainer2/VFlowContainer/MarginContainer2/MainButtonContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath(".")
+text = "Exit"
+
+[connection signal="visibility_changed" from="GUI/WinLoseDisplay" to="." method="_on_win_lose_display_visibility_changed"]
+[connection signal="pressed" from="GUI/WinLoseDisplay/VFlowContainer/MarginContainer2/VFlowContainer/MarginContainer2/MainButtonContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="GUI/WinLoseDisplay/VFlowContainer/MarginContainer2/VFlowContainer/MarginContainer2/MainButtonContainer/ExitButton" to="GUI/WinLoseDisplay" method="_on_exit_button_pressed"]

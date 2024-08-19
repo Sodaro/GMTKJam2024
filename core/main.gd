@@ -4,16 +4,23 @@ class_name Main
 enum GameMode {NONE, MENU, GAME}
 var game_mode: GameMode = GameMode.NONE
 
+var world_scene: PackedScene = preload("res://world/world.tscn")
+var _world_instance: Node
 func _ready():
 	game_mode = GameMode.MENU
-	$World.get_node("Control/CanvasLayer").visible = false
-	$World.process_mode = Node.PROCESS_MODE_DISABLED
+	#$World.get_node("Control/CanvasLayer").visible = false
 	#$World.get_node("World/WaveManager").on_level_finished.connect(_display_end_screen_win)
 	$GUI/MainMenu.play_button_pressed.connect(_on_play_button_pressed)
 	$GUI/WinLoseDisplay.on_play_again_pressed.connect(_on_play_button_pressed)
 	$GUI/MainMenu.resume_button_pressed.connect(_display_game)
 	$GUI/WinLoseDisplay.on_play_again_pressed.connect(_restart_game)
 	_update_window_resolution()
+
+func _create_world():
+	_world_instance = world_scene.instantiate()
+	add_child(_world_instance)
+	#_world_instance.get_node("Control/CanvasLayer").visible = false
+	#_world_instance.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("menu_action"):
@@ -40,27 +47,36 @@ func _update_window_resolution():
 		window.mode = Window.MODE_MAXIMIZED
 
 func _display_game() -> void:
-	$World.get_node("Control/CanvasLayer").visible = true
-	$World.process_mode = Node.PROCESS_MODE_PAUSABLE
+	_world_instance.get_node("Control/CanvasLayer").visible = true
+	_world_instance.process_mode = Node.PROCESS_MODE_PAUSABLE
 	$GUI.process_mode = Node.PROCESS_MODE_DISABLED
 	$GUI/MainMenu/CenterContainer/MainButtonContainer/ResumeButton.visible = true
 	$GUI/MainMenu/CenterContainer/MainButtonContainer/PlayButton.visible = false
-	$GUI.visible = false
+	$GUI/MainMenu.visible = false
+	$GUI/WinLoseDisplay.visible = false
 	game_mode = GameMode.GAME
 
 func _display_menu() -> void:
-	$World.get_node("Control/CanvasLayer").visible = false
-	$World.process_mode = Node.PROCESS_MODE_DISABLED
+	_world_instance.get_node("Control/CanvasLayer").visible = false
+	_world_instance.process_mode = Node.PROCESS_MODE_DISABLED
 	$GUI.process_mode = Node.PROCESS_MODE_ALWAYS
-	$GUI.visible = true
+	$GUI/MainMenu.visible = true
 	game_mode = GameMode.MENU
 
 func _display_end_screen_win() -> void:
 	$GUI/WinLoseDisplay.show_end_menu()
 
 func _on_play_button_pressed() -> void:
+	_create_world()
 	_display_game()
 
 func _restart_game() -> void:
 	_display_game()
 	$World/WaveManager.restart()
+
+
+func _on_win_lose_display_visibility_changed() -> void:
+	if $GUI/WinLoseDisplay.visible:
+		$GUI/WinLoseDisplay.process_mode = Node.PROCESS_MODE_ALWAYS
+	else:
+		$GUI/WinLoseDisplay.process_mode = Node.PROCESS_MODE_DISABLED
