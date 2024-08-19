@@ -11,10 +11,20 @@ config_version=5
 [application]
 
 config/name="GMTKJam2024"
-config/description="Submission for GMTK Game Jam 2024. Theme: Built to Expand"
+config/description="Submission for GMTK Game Jam 2024. Theme: Built to Expand
+
+Can you survive the waves of monsters who will adapt to what you build?
+
+Created by:
+github.com/Myggski
+github.com/Sodaro
+
+Credits:
+Music - alkakrab.itch.io
+Environment and Monsters by Kenney.nl"
 run/main_scene="res://core/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://icon256.svg"
 
 [autoload]
 
