@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cqjqwsawekfvr"]
+[gd_scene load_steps=13 format=3 uid="uid://cqjqwsawekfvr"]
 
 [ext_resource type="Script" path="res://core/main.gd" id="1_ybg65"]
 [ext_resource type="PackedScene" uid="uid://cjv3obretvf5x" path="res://world/world.tscn" id="2_jkeox"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bjis3xlh017dx" path="res://audio/music/game_3.mp3" id="7_ubxq8"]
 [ext_resource type="AudioStream" uid="uid://hbvpajk4bem0" path="res://audio/music/game_4.mp3" id="8_gq3o0"]
 [ext_resource type="AudioStream" uid="uid://bqp1d6jl2chl5" path="res://audio/music/game_5.mp3" id="9_pvrkm"]
+[ext_resource type="PackedScene" uid="uid://b01kulrku0q3v" path="res://win_lose_display.tscn" id="12_db55o"]
 
 [node name="Main" type="Node"]
 process_mode = 3
@@ -37,4 +38,7 @@ grow_vertical = 2
 script = ExtResource("3_7g8to")
 
 [node name="MainMenu" parent="GUI" instance=ExtResource("4_4otnu")]
+layout_mode = 1
+
+[node name="WinLoseDisplay" parent="GUI" instance=ExtResource("12_db55o")]
 layout_mode = 1

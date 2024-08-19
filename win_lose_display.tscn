@@ -1,0 +1,125 @@
+[gd_scene load_steps=7 format=3 uid="uid://b01kulrku0q3v"]
+
+[ext_resource type="Texture2D" uid="uid://cf1jl076qjqhe" path="res://art/game_logo.png" id="1_1o6y8"]
+[ext_resource type="Script" path="res://win_lose_display.gd" id="1_o5dra"]
+[ext_resource type="Texture2D" uid="uid://p0278imthaxc" path="res://art/game_over.png" id="2_01jrm"]
+[ext_resource type="Texture2D" uid="uid://bnvqnds1uenma" path="res://art/victory.png" id="3_vaads"]
+[ext_resource type="Texture2D" uid="uid://ckb8lkm6hd8gv" path="res://art/defeat.png" id="4_gpc8h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yvn5q"]
+line_spacing = 0.0
+font_size = 12
+
+[node name="WinLoseDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("1_o5dra")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.137255, 0.137255, 1)
+
+[node name="VFlowContainer" type="VFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VFlowContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VFlowContainer/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 24
+
+[node name="TextureRect" type="TextureRect" parent="VFlowContainer/CenterContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("1_1o6y8")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VFlowContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 16
+
+[node name="VFlowContainer" type="VFlowContainer" parent="VFlowContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="GameOver" type="TextureRect" parent="VFlowContainer/MarginContainer2/VFlowContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_01jrm")
+
+[node name="MarginContainer" type="MarginContainer" parent="VFlowContainer/MarginContainer2/VFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = -2
+
+[node name="VictoryDisplay" type="TextureRect" parent="VFlowContainer/MarginContainer2/VFlowContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_vaads")
+
+[node name="DefeatDisplay" type="TextureRect" parent="VFlowContainer/MarginContainer2/VFlowContainer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_gpc8h")
+
+[node name="SurvivedLevelsLabel" type="Label" parent="VFlowContainer/MarginContainer2/VFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Survived 8/12 Levels"
+label_settings = SubResource("LabelSettings_yvn5q")
+justification_flags = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="VFlowContainer/MarginContainer2/VFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="MainButtonContainer" type="VBoxContainer" parent="VFlowContainer/MarginContainer2/VFlowContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+
+[node name="PlayButton" type="Button" parent="VFlowContainer/MarginContainer2/VFlowContainer/MarginContainer2/MainButtonContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ExitButton")
+text = "Play Again"
+
+[node name="ExitButton" type="Button" parent="VFlowContainer/MarginContainer2/VFlowContainer/MarginContainer2/MainButtonContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath(".")
+text = "Exit"
+
+[connection signal="pressed" from="VFlowContainer/MarginContainer2/VFlowContainer/MarginContainer2/MainButtonContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VFlowContainer/MarginContainer2/VFlowContainer/MarginContainer2/MainButtonContainer/ExitButton" to="." method="_on_exit_button_pressed"]

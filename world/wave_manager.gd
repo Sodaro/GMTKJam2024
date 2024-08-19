@@ -5,7 +5,7 @@ class_name WaveManager
 signal on_enemy_castle_reached(enemy : BaseEnemy)
 signal on_level_changed(new_level : int)
 signal on_enemy_spawned(enemy: BaseEnemy)
-signal on_level_finished()
+signal on_level_finished(max_level : int)
 signal on_max_level_reached()
 
 var _current_wave_number: int = 0
@@ -133,7 +133,7 @@ func _try_spawn_enemies(delta: float) -> void:
 
 	if _has_finished() && !_level_finished:
 		_level_finished = true
-		on_level_finished.emit()
+		on_level_finished.emit(max_level)
 		return
 
 	if _enemies_to_spawn > 0:
